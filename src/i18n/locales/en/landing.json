@@ -1,0 +1,80 @@
+{
+  "hero": {
+    "badge": "AI-Verified Authentic Handcrafts",
+    "title": "India's Handmade\nHeritage Lives Here.",
+    "subtitle": "Support rural artisans. Learn authentic craftsmanship.\nPreserve culture. Powered by AI.",
+    "exploreMarketplace": "Explore Marketplace",
+    "startLearning": "Start Learning",
+    "trustedBy": "Trusted by <strong>{{count}}</strong> artisans across India"
+  },
+  "stats": {
+    "verifiedArtisans": "Verified Artisans",
+    "traditionalCrafts": "Traditional Crafts",
+    "handmadeProducts": "Handmade Products",
+    "activeLearners": "Active Learners"
+  },
+  "categories": {
+    "sectionLabel": "Explore by Craft",
+    "title": "Eight Centuries of\nTradition, One Platform.",
+    "pottery": "Pottery",
+    "potteryDesc": "Clay, ceramic & terracotta",
+    "woodCraft": "Wood Craft",
+    "woodCraftDesc": "Carving, inlay & lacquer",
+    "jewelry": "Jewelry",
+    "jewelryDesc": "Tribal, temple & kundan",
+    "textiles": "Textiles",
+    "textilesDesc": "Weaving, printing & dyeing",
+    "bamboo": "Bamboo",
+    "bambooDesc": "Weaving, furniture & décor",
+    "leather": "Leather",
+    "leatherDesc": "Puppetry, bags & footwear",
+    "paintings": "Paintings",
+    "paintingsDesc": "Madhubani, Warli & Pattachitra",
+    "metalCraft": "Metal Craft",
+    "metalCraftDesc": "Bronze, brass & Bidriware"
+  },
+  "featured": {
+    "sectionLabel": "Curated Collection",
+    "title": "Handpicked Masterpieces",
+    "viewAll": "View All"
+  },
+  "artisans": {
+    "sectionLabel": "The Makers",
+    "title": "Meet the Hands Behind\nthe Heritage",
+    "subtitle": "Every product on KalaConnect has a maker, a story, and a centuries-old tradition behind it.",
+    "years": "Years",
+    "products": "Products",
+    "rating": "Rating"
+  },
+  "timeline": {
+    "sectionLabel": "The Journey",
+    "title": "From Artisan's Hands to Yours",
+    "step1Title": "Raw Materials",
+    "step1Desc": "Artisans source natural, local materials — clay, wood, fibers, metals.",
+    "step2Title": "Handcrafting",
+    "step2Desc": "Every piece is made by hand using techniques passed down through generations.",
+    "step3Title": "Finishing",
+    "step3Desc": "Natural dyes, polishes, and finishes give each piece its unique character.",
+    "step4Title": "Quality Check",
+    "step4Desc": "AI-assisted verification ensures authenticity. Admin approval required.",
+    "step5Title": "Your Doorstep",
+    "step5Desc": "Carefully packaged and delivered directly from the artisan's workshop."
+  },
+  "academy": {
+    "sectionLabel": "Craft Academy",
+    "title": "Learn From the Masters",
+    "subtitle": "Video courses taught by India's finest artisans. From pottery to weaving, learn centuries-old techniques from the comfort of your home.",
+    "browseAll": "Browse All Courses",
+    "by": "by"
+  },
+  "testimonials": {
+    "sectionLabel": "What People Say",
+    "title": "Stories of Impact"
+  },
+  "cta": {
+    "title": "Join the Movement to\nPreserve India's Craft Heritage",
+    "subtitle": "Whether you're an artisan, a learner, or a craft lover — there's a place for you on KalaConnect.",
+    "startExploring": "Start Exploring",
+    "becomeArtisan": "Become an Artisan"
+  }
+}

@@ -1,0 +1,67 @@
+{
+  "hero": {
+    "tag": "క్రాఫ్ట్ అకాడమీ",
+    "title": "మాస్టర్ సాంప్రదాయ \nభారతీయ చేతిపనులు",
+    "subtitle": "నిర్మాణాత్మక వీడియో కోర్సుల ద్వారా భారతదేశంలోని అత్యుత్తమ మాస్టర్ కళాకారుల నుండి నేరుగా నేర్చుకోండి."
+  },
+  "search": {
+    "placeholder": "కోర్సులు, క్రాఫ్ట్‌లు, బోధకులను శోధించండి..."
+  },
+  "filters": {
+    "allCourses": "అన్ని కోర్సులు",
+    "beginner": "అనుభవశూన్యుడు",
+    "intermediate": "ఇంటర్మీడియట్",
+    "advanced": "అధునాతనమైనది",
+    "free": "ఉచిత",
+    "paid": "చెల్లించారు",
+    "popular": "జనాదరణ పొందినది",
+    "newest": "సరికొత్త",
+    "highestRated": "అత్యధిక రేటింగ్"
+  },
+  "course": {
+    "by": "{{బోధకుడు}} ద్వారా",
+    "lessons": "{{count}} పాఠం",
+    "lessons_other": "{{count}} పాఠాలు",
+    "students": "{{count}} విద్యార్థి",
+    "students_other": "{{count}} విద్యార్థులు",
+    "duration": "వ్యవధి",
+    "difficulty": "కష్టం",
+    "enrollNow": "ఇప్పుడే నమోదు చేయండి",
+    "startLearning": "నేర్చుకోవడం ప్రారంభించండి",
+    "continueLearning": "నేర్చుకోవడం కొనసాగించండి",
+    "enrolled": "నమోదు చేసుకున్నారు",
+    "completionRate": "{{percent}}% పూర్తయింది",
+    "certificate": "పూర్తి చేసిన సర్టిఫికేట్",
+    "description": "వివరణ",
+    "curriculum": "పాఠ్యప్రణాళిక",
+    "reviews": "సమీక్షలు",
+    "instructor": "బోధకుడు",
+    "whatYouLearn": "మీరు ఏమి నేర్చుకుంటారు",
+    "requirements": "అవసరాలు",
+    "includes": "ఈ కోర్సు కలిగి ఉంటుంది",
+    "videoHours": "{{hours}} గంటల వీడియో",
+    "downloadableResources": "{{count}} డౌన్‌లోడ్ చేయగల వనరు",
+    "downloadableResources_other": "{{count}} డౌన్‌లోడ్ చేయగల వనరులు",
+    "lifetimeAccess": "జీవితకాల యాక్సెస్",
+    "completionCertificate": "పూర్తి చేసిన సర్టిఫికేట్",
+    "mobileAccess": "మొబైల్ మరియు డెస్క్‌టాప్‌లో యాక్సెస్"
+  },
+  "player": {
+    "lesson": "పాఠం {{సంఖ్య}}",
+    "nextLesson": "తదుపరి పాఠం",
+    "previousLesson": "మునుపటి పాఠం",
+    "markComplete": "పూర్తయినట్లు గుర్తు పెట్టండి",
+    "completed": "పూర్తయింది",
+    "notes": "గమనికలు",
+    "resources": "వనరులు",
+    "discussion": "చర్చ",
+    "transcript": "ట్రాన్స్క్రిప్ట్",
+    "autoplay": "ఆటోప్లే",
+    "speed": "వేగం",
+    "quality": "నాణ్యత"
+  },
+  "empty": {
+    "noCourses": "కోర్సులు ఏవీ కనుగొనబడలేదు",
+    "noCoursesHint": "మీ శోధన లేదా ఫిల్టర్‌లను సర్దుబాటు చేయడానికి ప్రయత్నించండి."
+  }
+}

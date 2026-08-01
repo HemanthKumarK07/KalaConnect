@@ -1,0 +1,52 @@
+{
+  "hero": {
+    "tag": "बाज़ार",
+    "title": "प्रामाणिक भारतीय\nहस्तशिल्प खोजें",
+    "subtitle": "हर उत्पाद हस्तनिर्मित, AI-सत्यापित है और सीधे कारीगर की कार्यशाला से भेजा जाता है।"
+  },
+  "search": {
+    "placeholder": "शिल्प, कारीगर, गाँव खोजें...",
+    "voiceSearch": "वॉइस सर्च",
+    "imageSearch": "इमेज सर्च",
+    "clear": "खोज साफ़ करें"
+  },
+  "filters": {
+    "filters": "फ़िल्टर",
+    "sortBy": "क्रमबद्ध करें",
+    "featured": "चुनिंदा",
+    "priceLowHigh": "मूल्य: कम → अधिक",
+    "priceHighLow": "मूल्य: अधिक → कम",
+    "topRated": "सर्वोच्च रेटेड",
+    "bestSelling": "सबसे ज़्यादा बिकने वाले",
+    "allCrafts": "सभी शिल्प",
+    "priceRange": "मूल्य सीमा",
+    "clearFilters": "सभी फ़िल्टर साफ़ करें"
+  },
+  "results": {
+    "productsFound": "{{count}} उत्पाद मिला",
+    "productsFound_other": "{{count}} उत्पाद मिले",
+    "noResults": "कोई शिल्प नहीं मिला",
+    "noResultsHint": "जो आप खोज रहे हैं उसे खोजने के लिए अपनी खोज या फ़िल्टर समायोजित करें।"
+  },
+  "product": {
+    "addToCart": "कार्ट में जोड़ें",
+    "verified": "सत्यापित",
+    "authentic": "प्रामाणिक",
+    "handmade": "हस्तनिर्मित",
+    "soldBy": "{{artisan}} द्वारा",
+    "from": "{{village}} से",
+    "sold": "{{count}} बिके",
+    "inStock": "स्टॉक में",
+    "outOfStock": "स्टॉक में नहीं",
+    "freeShipping": "मुफ़्त शिपिंग",
+    "description": "विवरण",
+    "specifications": "विनिर्देश",
+    "reviews": "समीक्षाएं",
+    "relatedProducts": "संबंधित उत्पाद",
+    "artisanStory": "कारीगर की कहानी",
+    "materials": "सामग्री",
+    "dimensions": "आयाम",
+    "weight": "वज़न",
+    "careInstructions": "देखभाल निर्देश"
+  }
+}

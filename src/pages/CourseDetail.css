@@ -1,0 +1,53 @@
+.course-detail-page { padding-top: var(--nav-height); }
+
+.cd-hero { position: relative; padding: var(--space-12) 0 var(--space-16); overflow: hidden; }
+.cd-hero__bg { position: absolute; inset: 0; background: linear-gradient(135deg, #1A1410 0%, #3F3126 100%); }
+.cd-hero__bg::after { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 30% 50%, rgba(201,166,107,0.1) 0%, transparent 60%); }
+.cd-hero__content { position: relative; z-index: 1; color: white; }
+.cd-back { display: inline-flex; align-items: center; gap: var(--space-2); color: rgba(255,255,255,0.5); font-size: var(--text-sm); margin-bottom: var(--space-6); transition: color var(--duration-fast) ease; }
+.cd-back:hover { color: rgba(255,255,255,0.8); }
+
+.cd-hero__layout { display: grid; grid-template-columns: 1.3fr 1fr; gap: var(--space-10); align-items: start; }
+.cd-hero__title { font-size: var(--text-4xl); line-height: var(--leading-snug); margin-bottom: var(--space-4); }
+.cd-hero__desc { color: rgba(255,255,255,0.6); line-height: var(--leading-relaxed); margin-bottom: var(--space-5); }
+.cd-hero__meta { display: flex; flex-wrap: wrap; gap: var(--space-4); font-size: var(--text-sm); color: rgba(255,255,255,0.5); margin-bottom: var(--space-6); }
+.cd-hero__meta span { display: flex; align-items: center; gap: 4px; }
+.cd-hero__meta strong { color: white; }
+.cd-hero__instructor { display: flex; align-items: center; gap: var(--space-3); }
+
+/* CTA Card */
+.cd-hero__cta-card { background: var(--color-surface); border-radius: var(--radius-xl); overflow: hidden; box-shadow: var(--shadow-xl); color: var(--color-text-primary); }
+.cd-hero__video-preview { aspect-ratio: 16/9; display: flex; align-items: center; justify-content: center; position: relative; cursor: pointer; }
+.cd-hero__play { width: 64px; height: 64px; border-radius: var(--radius-full); background: rgba(255,255,255,0.2); backdrop-filter: blur(8px); display: flex; align-items: center; justify-content: center; color: white; transition: transform var(--duration-normal) ease; }
+.cd-hero__video-preview:hover .cd-hero__play { transform: scale(1.1); }
+.cd-hero__cta-content { padding: var(--space-5); }
+.cd-hero__price { display: flex; align-items: baseline; gap: var(--space-3); margin-bottom: var(--space-4); }
+
+/* What You Learn */
+.cd-learn-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-4); }
+.cd-learn-item { display: flex; align-items: flex-start; gap: var(--space-3); font-size: var(--text-sm); color: var(--color-text-secondary); line-height: var(--leading-relaxed); }
+
+/* Curriculum */
+.cd-curriculum { display: flex; flex-direction: column; gap: var(--space-3); }
+.cd-section { border: 1px solid var(--color-border-light); border-radius: var(--radius-lg); overflow: hidden; }
+.cd-section__header { width: 100%; display: flex; align-items: center; justify-content: space-between; padding: var(--space-4) var(--space-5); cursor: pointer; background: var(--color-bg); border: none; text-align: left; }
+.cd-section__title { font-family: var(--font-heading); font-size: var(--text-base); font-weight: 600; }
+.cd-section__meta { font-size: var(--text-xs); color: var(--color-text-tertiary); }
+.cd-section__lessons { padding: 0 var(--space-5) var(--space-4); }
+.cd-lesson { display: flex; align-items: center; gap: var(--space-3); padding: var(--space-3) 0; border-bottom: 1px solid var(--color-border-light); font-size: var(--text-sm); }
+.cd-lesson:last-child { border-bottom: none; }
+.cd-lesson__icon { color: var(--color-text-tertiary); flex-shrink: 0; }
+.cd-lesson__title { flex: 1; color: var(--color-text-primary); }
+.cd-lesson__type { flex-shrink: 0; }
+.cd-lesson__duration { color: var(--color-text-tertiary); font-size: var(--text-xs); flex-shrink: 0; }
+
+/* Instructor */
+.cd-instructor { display: flex; gap: var(--space-6); align-items: flex-start; max-width: 720px; }
+.cd-instructor__info { flex: 1; }
+
+@media (max-width: 768px) {
+  .cd-hero__layout { grid-template-columns: 1fr; }
+  .cd-hero__title { font-size: var(--text-3xl); }
+  .cd-learn-grid { grid-template-columns: 1fr; }
+  .cd-instructor { flex-direction: column; }
+}

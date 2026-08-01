@@ -1,0 +1,189 @@
+/* ================================================================
+   PRODUCT CARD — Floating Glass Panel
+   ================================================================ */
+
+.product-card {
+  position: relative;
+  background: var(--glass-1);
+  backdrop-filter: var(--glass-blur-sm) var(--glass-saturate);
+  -webkit-backdrop-filter: var(--glass-blur-sm) var(--glass-saturate);
+  border: var(--glass-border);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  transition: all var(--duration-slower) var(--ease-out-expo);
+  will-change: transform;
+}
+
+.product-card:hover {
+  transform: translateY(-8px) scale(1.01);
+  box-shadow: var(--shadow-card-hover);
+  background: var(--glass-2);
+}
+
+[data-theme='dark'] .product-card {
+  background: var(--glass-1);
+}
+
+[data-theme='dark'] .product-card:hover {
+  background: var(--glass-2);
+}
+
+.product-card__link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Image */
+.product-card__image-wrap {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  margin: var(--space-2);
+}
+
+.product-card__image-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform var(--duration-slower) var(--ease-out-expo);
+}
+
+.product-card:hover .product-card__image-placeholder {
+  transform: scale(1.06);
+}
+
+.product-card__craft-label {
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  color: rgba(255, 255, 255, 0.7);
+  font-style: italic;
+  text-align: center;
+  padding: var(--space-4);
+}
+
+/* Badges */
+.product-card__badges {
+  position: absolute;
+  top: var(--space-3);
+  left: var(--space-3);
+  display: flex;
+  gap: var(--space-2);
+}
+
+/* Actions */
+.product-card__actions {
+  position: absolute;
+  top: var(--space-3);
+  right: var(--space-3);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  z-index: 2;
+  opacity: 0;
+  transform: translateX(8px);
+  transition: all var(--duration-normal) var(--ease-out-expo);
+}
+
+.product-card:hover .product-card__actions {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.product-card__action {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-full);
+  background: var(--glass-3);
+  backdrop-filter: var(--glass-blur-sm);
+  -webkit-backdrop-filter: var(--glass-blur-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-secondary);
+  transition: all var(--duration-fast) ease;
+  border: none;
+}
+
+.product-card__action:hover {
+  transform: scale(1.1);
+  color: var(--color-text-primary);
+  background: var(--glass-4);
+}
+
+/* Content */
+.product-card__content {
+  padding: var(--space-3) var(--space-4) var(--space-4);
+}
+
+.product-card__meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-2);
+}
+
+.product-card__village {
+  font-size: 10px;
+  color: var(--color-text-muted);
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+}
+
+.product-card__rating {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  font-size: var(--text-xs);
+  color: var(--color-accent);
+  font-weight: 500;
+}
+
+.product-card__title {
+  font-family: var(--font-heading);
+  font-size: var(--text-base);
+  font-weight: 600;
+  line-height: var(--leading-snug);
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-1);
+}
+
+.product-card__artisan {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-3);
+}
+
+.product-card__footer {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--color-border-light);
+}
+
+.product-card__price {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-2);
+}
+
+.product-card__price-current {
+  font-size: var(--text-lg);
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.product-card__price-original {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  text-decoration: line-through;
+}
+
+.product-card__hours {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+}

@@ -1,0 +1,31 @@
+{
+  "title": "AI Assistant",
+  "subtitle": "Your intelligent craft companion. Generate descriptions, verify authenticity, translate, and learn.",
+  "greeting": "Namaste! 🙏 I'm Kalai, KalaConnect's AI Assistant. I can help you with:\n\n* **Product Listing** — Generate titles, descriptions & SEO tags from photos\n* **Authenticity Verification** — Analyze images for handmade indicators\n* **Translation** — Convert your product details into any Indian language\n* **Learning Support** — Summarize lessons, create quizzes & help with assignments\n\nHow can I help you today?",
+  "quickActions": {
+    "title": "Quick Actions",
+    "analyzeImage": "Analyze Product Image",
+    "generateDescription": "Generate Product Description",
+    "verifyAuthenticity": "Verify Authenticity",
+    "translateContent": "Translate Content"
+  },
+  "capabilities": {
+    "title": "Capabilities",
+    "visionAnalysis": "Vision Analysis",
+    "voiceInput": "Voice Input",
+    "multiLanguage": "23 Languages",
+    "verification": "Verification",
+    "seoGeneration": "SEO Generation",
+    "smartQuizzes": "Smart Quizzes"
+  },
+  "input": {
+    "placeholder": "Ask about your craft, generate descriptions, or verify authenticity...",
+    "uploadImage": "Upload image",
+    "voiceInput": "Voice input",
+    "send": "Send"
+  },
+  "clearChat": "Clear Chat History",
+  "chatCleared": "Chat history cleared",
+  "poweredBy": "Powered by AI. Responses may take a moment to generate.",
+  "error": "I encountered an unexpected issue. Please try again later."
+}

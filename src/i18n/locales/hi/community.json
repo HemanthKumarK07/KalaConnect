@@ -1,0 +1,8 @@
+{
+  "hero": { "tag": "समुदाय", "title": "शिल्प समुदाय\nसे जुड़ें", "subtitle": "कारीगरों से जुड़ें, अपना काम साझा करें, और भारत के शिल्प पुनरुत्थान का हिस्सा बनें।" },
+  "topics": { "all": "सभी विषय", "generalDiscussion": "सामान्य चर्चा", "craftTechniques": "शिल्प तकनीकें", "businessTips": "व्यापार सुझाव", "showcaseWork": "अपना काम दिखाएं", "questionsHelp": "प्रश्न और सहायता", "events": "कार्यक्रम और मिलन" },
+  "post": { "createPost": "पोस्ट बनाएं", "postPlaceholder": "समुदाय के साथ कुछ साझा करें...", "post": "पोस्ट", "posting": "पोस्ट हो रहा है...", "like": "पसंद", "comment": "टिप्पणी", "share": "साझा करें", "reply": "उत्तर", "translate": "अनुवाद करें", "showOriginal": "मूल दिखाएं", "editPost": "संपादित करें", "deletePost": "हटाएं", "reportPost": "रिपोर्ट करें", "comments": "{{count}} टिप्पणी", "comments_other": "{{count}} टिप्पणियाँ", "likes": "{{count}} पसंद", "likes_other": "{{count}} पसंद", "noComments": "अभी तक कोई टिप्पणी नहीं। पहले बनें!", "loginToPost": "पोस्ट बनाने के लिए कृपया लॉग इन करें", "loginToComment": "टिप्पणी करने के लिए कृपया लॉग इन करें", "postSuccess": "पोस्ट सफलतापूर्वक बनाई गई!", "postError": "पोस्ट बनाने में विफल। कृपया पुनः प्रयास करें।" },
+  "challenges": { "title": "मासिक चुनौतियाँ", "currentChallenge": "वर्तमान चुनौती", "upcomingChallenges": "आगामी", "pastChallenges": "पिछली चुनौतियाँ", "participants": "{{count}} प्रतिभागी", "participants_other": "{{count}} प्रतिभागी", "daysLeft": "{{count}} दिन बाकी", "daysLeft_other": "{{count}} दिन बाकी", "joinChallenge": "चुनौती में शामिल हों", "submitEntry": "प्रविष्टि जमा करें" },
+  "search": { "placeholder": "पोस्ट, विषय, सदस्य खोजें..." },
+  "empty": { "noPosts": "अभी तक कोई पोस्ट नहीं", "noPostsHint": "समुदाय के साथ कुछ साझा करने वाले पहले व्यक्ति बनें!" }
+}

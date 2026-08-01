@@ -1,0 +1,67 @@
+{
+  "hero": {
+    "tag": "ക്രാഫ്റ്റ് അക്കാദമി",
+    "title": "മാസ്റ്റർ പരമ്പരാഗത \nഇന്ത്യൻ കരകൗശലവസ്തുക്കൾ",
+    "subtitle": "ഘടനാപരമായ വീഡിയോ കോഴ്‌സുകളിലൂടെ ഇന്ത്യയിലെ ഏറ്റവും മികച്ച മാസ്റ്റർ കരകൗശല വിദഗ്ധരിൽ നിന്ന് നേരിട്ട് പഠിക്കുക."
+  },
+  "search": {
+    "placeholder": "കോഴ്‌സുകൾ, കരകൗശലങ്ങൾ, ഇൻസ്ട്രക്ടർമാർ എന്നിവ തിരയുക..."
+  },
+  "filters": {
+    "allCourses": "എല്ലാ കോഴ്സുകളും",
+    "beginner": "തുടക്കക്കാരൻ",
+    "intermediate": "ഇൻ്റർമീഡിയറ്റ്",
+    "advanced": "വിപുലമായ",
+    "free": "സൗജന്യം",
+    "paid": "പണം നൽകി",
+    "popular": "ജനപ്രിയമായത്",
+    "newest": "ഏറ്റവും പുതിയത്",
+    "highestRated": "ഏറ്റവും ഉയർന്ന റേറ്റിംഗ്"
+  },
+  "course": {
+    "by": "{{ഇൻസ്ട്രക്ടർ}} മുഖേന",
+    "lessons": "{{count}} പാഠം",
+    "lessons_other": "{{count}} പാഠങ്ങൾ",
+    "students": "{{count}} വിദ്യാർത്ഥി",
+    "students_other": "{{count}} വിദ്യാർത്ഥികൾ",
+    "duration": "ദൈർഘ്യം",
+    "difficulty": "ബുദ്ധിമുട്ട്",
+    "enrollNow": "ഇപ്പോൾ എൻറോൾ ചെയ്യുക",
+    "startLearning": "പഠനം ആരംഭിക്കുക",
+    "continueLearning": "പഠനം തുടരുക",
+    "enrolled": "എൻറോൾ ചെയ്തു",
+    "completionRate": "{{percent}}% പൂർത്തിയായി",
+    "certificate": "പൂർത്തിയാക്കിയതിൻ്റെ സർട്ടിഫിക്കറ്റ്",
+    "description": "വിവരണം",
+    "curriculum": "പാഠ്യപദ്ധതി",
+    "reviews": "അവലോകനങ്ങൾ",
+    "instructor": "അദ്ധ്യാപകൻ",
+    "whatYouLearn": "നിങ്ങൾ എന്ത് പഠിക്കും",
+    "requirements": "ആവശ്യകതകൾ",
+    "includes": "ഈ കോഴ്സ് ഉൾപ്പെടുന്നു",
+    "videoHours": "{{hours}} മണിക്കൂർ വീഡിയോ",
+    "downloadableResources": "{{count}} ഡൗൺലോഡ് ചെയ്യാവുന്ന ഉറവിടം",
+    "downloadableResources_other": "{{count}} ഡൗൺലോഡ് ചെയ്യാവുന്ന ഉറവിടങ്ങൾ",
+    "lifetimeAccess": "ആജീവനാന്ത പ്രവേശനം",
+    "completionCertificate": "പൂർത്തിയാക്കിയതിൻ്റെ സർട്ടിഫിക്കറ്റ്",
+    "mobileAccess": "മൊബൈലിലും ഡെസ്‌ക്‌ടോപ്പിലും ആക്‌സസ്സ്"
+  },
+  "player": {
+    "lesson": "പാഠം {{number}}",
+    "nextLesson": "അടുത്ത പാഠം",
+    "previousLesson": "മുമ്പത്തെ പാഠം",
+    "markComplete": "പൂർത്തിയായതായി അടയാളപ്പെടുത്തുക",
+    "completed": "പൂർത്തിയാക്കി",
+    "notes": "കുറിപ്പുകൾ",
+    "resources": "വിഭവങ്ങൾ",
+    "discussion": "ചർച്ച",
+    "transcript": "ട്രാൻസ്ക്രിപ്റ്റ്",
+    "autoplay": "ഓട്ടോപ്ലേ",
+    "speed": "വേഗത",
+    "quality": "ഗുണനിലവാരം"
+  },
+  "empty": {
+    "noCourses": "കോഴ്സുകളൊന്നും കണ്ടെത്തിയില്ല",
+    "noCoursesHint": "നിങ്ങളുടെ തിരയൽ അല്ലെങ്കിൽ ഫിൽട്ടറുകൾ ക്രമീകരിക്കാൻ ശ്രമിക്കുക."
+  }
+}

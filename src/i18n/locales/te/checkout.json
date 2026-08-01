@@ -1,0 +1,68 @@
+{
+  "title": "చెక్అవుట్",
+  "steps": {
+    "shipping": "షిప్పింగ్",
+    "payment": "చెల్లింపు",
+    "review": "సమీక్షించండి"
+  },
+  "shipping": {
+    "title": "షిప్పింగ్ చిరునామా",
+    "fullName": "పూర్తి పేరు",
+    "address": "చిరునామా",
+    "addressLine2": "అపార్ట్‌మెంట్, సూట్ మొదలైనవి (ఐచ్ఛికం)",
+    "city": "నగరం",
+    "state": "రాష్ట్రం",
+    "pincode": "పిన్ కోడ్",
+    "phone": "ఫోన్ నంబర్",
+    "saveAddress": "భవిష్యత్ ఆర్డర్‌ల కోసం ఈ చిరునామాను సేవ్ చేయండి",
+    "deliveryEstimate": "డెలివరీ అంచనా: {{days}} పని దినాలు"
+  },
+  "payment": {
+    "title": "చెల్లింపు విధానం",
+    "creditCard": "క్రెడిట్ / డెబిట్ కార్డ్",
+    "upi": "UPI",
+    "netBanking": "నెట్ బ్యాంకింగ్",
+    "cod": "క్యాష్ ఆన్ డెలివరీ",
+    "cardNumber": "కార్డ్ నంబర్",
+    "cardName": "కార్డ్‌లో పేరు",
+    "expiry": "గడువు తేదీ",
+    "cvv": "సి.వి.వి",
+    "upiId": "UPI ID",
+    "upiIdPlaceholder": "మీ పేరు@upi"
+  },
+  "review": {
+    "title": "రివ్యూ ఆర్డర్",
+    "orderSummary": "ఆర్డర్ సారాంశం",
+    "items": "{{count}} అంశం",
+    "items_other": "{{count}} అంశాలు",
+    "subtotal": "ఉపమొత్తం",
+    "shipping": "షిప్పింగ్",
+    "freeShipping": "ఉచిత",
+    "shippingFee": "₹{{మొత్తం}}",
+    "tax": "పన్ను (GST 12%)",
+    "total": "మొత్తం",
+    "shippingAddress": "షిప్పింగ్ చిరునామా",
+    "paymentMethod": "చెల్లింపు విధానం",
+    "edit": "సవరించు"
+  },
+  "actions": {
+    "continueToPayment": "చెల్లింపును కొనసాగించండి",
+    "continueToReview": "సమీక్షకు కొనసాగండి",
+    "placeOrder": "ఆర్డర్ ఉంచండి",
+    "processing": "ప్రాసెస్ చేస్తోంది...",
+    "backToShipping": "తిరిగి షిప్పింగ్కి",
+    "backToPayment": "తిరిగి చెల్లింపుకి",
+    "returnToShop": "దుకాణానికి తిరిగి వెళ్ళు"
+  },
+  "empty": {
+    "title": "మీ కార్ట్ ఖాళీగా ఉంది",
+    "returnToShop": "దుకాణానికి తిరిగి వెళ్ళు"
+  },
+  "success": {
+    "title": "ఆర్డర్ విజయవంతంగా ఉంచబడింది!",
+    "message": "కళాకారులను ఆదరిస్తున్నందుకు ధన్యవాదాలు. మీ ఆర్డర్ చేయబడింది.",
+    "orderNumber": "ఆర్డర్ సంఖ్య: {{number}}",
+    "continueShopping": "షాపింగ్ కొనసాగించండి"
+  },
+  "freeShippingThreshold": "₹5,000 కంటే ఎక్కువ ఆర్డర్‌లపై ఉచిత షిప్పింగ్"
+}

@@ -1,0 +1,138 @@
+/* ================================================================
+   KalaConnect — Indic Script Font System
+   Dynamic font loading for all supported Indian language scripts.
+   Each font uses font-display: swap for zero layout shift.
+   ================================================================ */
+
+/* --- Noto Sans Devanagari (Hindi, Marathi, Konkani, Kashmiri, Dogri, Maithili, Bodo, Nepali, Sanskrit) --- */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@300;400;500;600;700&display=swap');
+
+/* --- Noto Sans Tamil --- */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Tamil:wght@300;400;500;600;700&display=swap');
+
+/* --- Noto Sans Telugu --- */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Telugu:wght@300;400;500;600;700&display=swap');
+
+/* --- Noto Sans Kannada --- */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Kannada:wght@300;400;500;600;700&display=swap');
+
+/* --- Noto Sans Malayalam --- */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Malayalam:wght@300;400;500;600;700&display=swap');
+
+/* --- Noto Sans Gujarati --- */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Gujarati:wght@300;400;500;600;700&display=swap');
+
+/* --- Noto Sans Gurmukhi (Punjabi) --- */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Gurmukhi:wght@300;400;500;600;700&display=swap');
+
+/* --- Noto Sans Bengali (Bengali, Assamese, Manipuri) --- */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@300;400;500;600;700&display=swap');
+
+/* --- Noto Sans Oriya (Odia) --- */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Oriya:wght@300;400;500;600;700&display=swap');
+
+/* --- Noto Nastaliq Urdu --- */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;500;600;700&display=swap');
+
+/* --- Noto Sans Arabic (Sindhi) --- */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@300;400;500;600;700&display=swap');
+
+/* --- Noto Sans Ol Chiki (Santali) --- */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Ol+Chiki:wght@400;500;600;700&display=swap');
+
+
+/* ================================================================
+   Language-specific font application
+   When a language is active, its font is applied to the body.
+   The useDirection hook sets data-lang attribute on <html>.
+   ================================================================ */
+
+/* Devanagari-script languages */
+[data-lang="hi"] body,
+[data-lang="mr"] body,
+[data-lang="kok"] body,
+[data-lang="ks"] body,
+[data-lang="doi"] body,
+[data-lang="mai"] body,
+[data-lang="brx"] body,
+[data-lang="ne"] body,
+[data-lang="sa"] body {
+  font-family: 'Noto Sans Devanagari', 'Inter', system-ui, sans-serif;
+}
+
+[data-lang="ta"] body {
+  font-family: 'Noto Sans Tamil', 'Inter', system-ui, sans-serif;
+}
+
+[data-lang="te"] body {
+  font-family: 'Noto Sans Telugu', 'Inter', system-ui, sans-serif;
+}
+
+[data-lang="kn"] body {
+  font-family: 'Noto Sans Kannada', 'Inter', system-ui, sans-serif;
+}
+
+[data-lang="ml"] body {
+  font-family: 'Noto Sans Malayalam', 'Inter', system-ui, sans-serif;
+}
+
+[data-lang="gu"] body {
+  font-family: 'Noto Sans Gujarati', 'Inter', system-ui, sans-serif;
+}
+
+[data-lang="pa"] body {
+  font-family: 'Noto Sans Gurmukhi', 'Inter', system-ui, sans-serif;
+}
+
+/* Bengali-script languages */
+[data-lang="bn"] body,
+[data-lang="as"] body,
+[data-lang="mni"] body {
+  font-family: 'Noto Sans Bengali', 'Inter', system-ui, sans-serif;
+}
+
+[data-lang="or"] body {
+  font-family: 'Noto Sans Oriya', 'Inter', system-ui, sans-serif;
+}
+
+[data-lang="ur"] body {
+  font-family: 'Noto Nastaliq Urdu', 'Inter', system-ui, sans-serif;
+}
+
+[data-lang="sd"] body {
+  font-family: 'Noto Sans Arabic', 'Inter', system-ui, sans-serif;
+}
+
+[data-lang="sat"] body {
+  font-family: 'Noto Sans Ol Chiki', 'Inter', system-ui, sans-serif;
+}
+
+/* ================================================================
+   Ensure hero/display fonts still use Playfair for headings
+   across all languages (Latin-script display font)
+   For Indic scripts, we let the Noto font handle everything
+   ================================================================ */
+
+[data-lang="en"] .font-display,
+[data-lang="en"] .font-hero {
+  font-family: 'Playfair Display', serif;
+}
+
+/* For non-Latin scripts, override display fonts to use Indic fonts */
+[data-lang]:not([data-lang="en"]) .font-display,
+[data-lang]:not([data-lang="en"]) .font-hero {
+  font-family: inherit;
+  letter-spacing: 0;
+}
+
+/* ================================================================
+   RTL-specific typography adjustments
+   ================================================================ */
+[dir="rtl"] body {
+  text-align: right;
+}
+
+[dir="rtl"] .font-mono {
+  direction: ltr;
+  unicode-bidi: embed;
+}

@@ -1,0 +1,68 @@
+{
+  "title": "ചെക്ക് ഔട്ട്",
+  "steps": {
+    "shipping": "ഷിപ്പിംഗ്",
+    "payment": "പേയ്മെൻ്റ്",
+    "review": "അവലോകനം"
+  },
+  "shipping": {
+    "title": "ഷിപ്പിംഗ് വിലാസം",
+    "fullName": "പൂർണ്ണമായ പേര്",
+    "address": "വിലാസം",
+    "addressLine2": "അപ്പാർട്ട്മെൻ്റ്, സ്യൂട്ട് മുതലായവ (ഓപ്ഷണൽ)",
+    "city": "നഗരം",
+    "state": "സംസ്ഥാനം",
+    "pincode": "പിൻ കോഡ്",
+    "phone": "ഫോൺ നമ്പർ",
+    "saveAddress": "ഭാവി ഓർഡറുകൾക്കായി ഈ വിലാസം സംരക്ഷിക്കുക",
+    "deliveryEstimate": "കണക്കാക്കിയ ഡെലിവറി: {{days}} പ്രവൃത്തി ദിവസങ്ങൾ"
+  },
+  "payment": {
+    "title": "പണമടയ്ക്കൽ രീതി",
+    "creditCard": "ക്രെഡിറ്റ് / ഡെബിറ്റ് കാർഡ്",
+    "upi": "യുപിഐ",
+    "netBanking": "നെറ്റ് ബാങ്കിംഗ്",
+    "cod": "ക്യാഷ് ഓൺ ഡെലിവറി",
+    "cardNumber": "കാർഡ് നമ്പർ",
+    "cardName": "കാർഡിലെ പേര്",
+    "expiry": "കാലഹരണപ്പെടുന്ന തീയതി",
+    "cvv": "സി.വി.വി",
+    "upiId": "UPI ഐഡി",
+    "upiIdPlaceholder": "yourname@upi"
+  },
+  "review": {
+    "title": "ഓർഡർ അവലോകനം ചെയ്യുക",
+    "orderSummary": "ഓർഡർ സംഗ്രഹം",
+    "items": "{{count}} ഇനം",
+    "items_other": "{{count}} ഇനങ്ങൾ",
+    "subtotal": "ഉപമൊത്തം",
+    "shipping": "ഷിപ്പിംഗ്",
+    "freeShipping": "സൗജന്യം",
+    "shippingFee": "₹{{തുക}}",
+    "tax": "നികുതി (ജിഎസ്ടി 12%)",
+    "total": "ആകെ",
+    "shippingAddress": "ഷിപ്പിംഗ് വിലാസം",
+    "paymentMethod": "പണമടയ്ക്കൽ രീതി",
+    "edit": "എഡിറ്റ് ചെയ്യുക"
+  },
+  "actions": {
+    "continueToPayment": "പേയ്‌മെൻ്റിൽ തുടരുക",
+    "continueToReview": "അവലോകനം തുടരുക",
+    "placeOrder": "ഓർഡർ നൽകുക",
+    "processing": "പ്രോസസ്സ് ചെയ്യുന്നു...",
+    "backToShipping": "ഷിപ്പിംഗിലേക്ക് മടങ്ങുക",
+    "backToPayment": "പേയ്‌മെൻ്റിലേക്ക് മടങ്ങുക",
+    "returnToShop": "ഷോപ്പിലേക്ക് മടങ്ങുക"
+  },
+  "empty": {
+    "title": "നിങ്ങളുടെ വണ്ടി ശൂന്യമാണ്",
+    "returnToShop": "ഷോപ്പിലേക്ക് മടങ്ങുക"
+  },
+  "success": {
+    "title": "ഓർഡർ ചെയ്തു!",
+    "message": "കരകൗശല തൊഴിലാളികളെ പിന്തുണച്ചതിന് നന്ദി. നിങ്ങളുടെ ഓർഡർ നൽകി.",
+    "orderNumber": "ഓർഡർ നമ്പർ: {{number}}",
+    "continueShopping": "ഷോപ്പിംഗ് തുടരുക"
+  },
+  "freeShippingThreshold": "₹5,000-ന് മുകളിലുള്ള ഓർഡറുകൾക്ക് സൗജന്യ ഷിപ്പിംഗ്"
+}

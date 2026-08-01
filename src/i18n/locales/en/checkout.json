@@ -1,0 +1,68 @@
+{
+  "title": "Checkout",
+  "steps": {
+    "shipping": "Shipping",
+    "payment": "Payment",
+    "review": "Review"
+  },
+  "shipping": {
+    "title": "Shipping Address",
+    "fullName": "Full Name",
+    "address": "Address",
+    "addressLine2": "Apartment, suite, etc. (optional)",
+    "city": "City",
+    "state": "State",
+    "pincode": "PIN Code",
+    "phone": "Phone Number",
+    "saveAddress": "Save this address for future orders",
+    "deliveryEstimate": "Estimated delivery: {{days}} business days"
+  },
+  "payment": {
+    "title": "Payment Method",
+    "creditCard": "Credit / Debit Card",
+    "upi": "UPI",
+    "netBanking": "Net Banking",
+    "cod": "Cash on Delivery",
+    "cardNumber": "Card Number",
+    "cardName": "Name on Card",
+    "expiry": "Expiry Date",
+    "cvv": "CVV",
+    "upiId": "UPI ID",
+    "upiIdPlaceholder": "yourname@upi"
+  },
+  "review": {
+    "title": "Review Order",
+    "orderSummary": "Order Summary",
+    "items": "{{count}} item",
+    "items_other": "{{count}} items",
+    "subtotal": "Subtotal",
+    "shipping": "Shipping",
+    "freeShipping": "Free",
+    "shippingFee": "₹{{amount}}",
+    "tax": "Tax (GST 12%)",
+    "total": "Total",
+    "shippingAddress": "Shipping Address",
+    "paymentMethod": "Payment Method",
+    "edit": "Edit"
+  },
+  "actions": {
+    "continueToPayment": "Continue to Payment",
+    "continueToReview": "Continue to Review",
+    "placeOrder": "Place Order",
+    "processing": "Processing...",
+    "backToShipping": "Back to Shipping",
+    "backToPayment": "Back to Payment",
+    "returnToShop": "Return to Shop"
+  },
+  "empty": {
+    "title": "Your cart is empty",
+    "returnToShop": "Return to Shop"
+  },
+  "success": {
+    "title": "Order Placed Successfully!",
+    "message": "Thank you for supporting artisans. Your order has been placed.",
+    "orderNumber": "Order Number: {{number}}",
+    "continueShopping": "Continue Shopping"
+  },
+  "freeShippingThreshold": "Free shipping on orders above ₹5,000"
+}

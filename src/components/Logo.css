@@ -1,0 +1,49 @@
+/* Logo Specific Animations and Overrides */
+
+.logo-icon {
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  display: block;
+}
+
+/* Subtle Hover Animation */
+.logo-container-animated {
+  cursor: pointer;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+}
+
+.logo-container-animated:hover {
+  transform: scale(1.03);
+}
+
+.logo-container-animated:hover .logo-path-primary {
+  stroke: #A8764E; /* slightly lighter warm brown on hover */
+}
+
+.logo-container-animated:hover .logo-path-secondary {
+  stroke: #D68F55; /* slightly lighter clay orange */
+}
+
+.logo-container-animated:hover .logo-path-accent {
+  stroke: #EBC368; /* slightly lighter gold */
+}
+
+/* Path transitions for smooth color change */
+.logo-icon path {
+  transition: stroke 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Entry Animation (Fade in & up) used for Loading screens or initial load */
+.logo-icon-animated {
+  animation: logo-reveal 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes logo-reveal {
+  0% {
+    opacity: 0;
+    transform: translateY(15px) scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}

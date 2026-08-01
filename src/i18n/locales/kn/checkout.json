@@ -1,0 +1,68 @@
+{
+  "title": "ಚೆಕ್ಔಟ್",
+  "steps": {
+    "shipping": "ಶಿಪ್ಪಿಂಗ್",
+    "payment": "ಪಾವತಿ",
+    "review": "ವಿಮರ್ಶೆ"
+  },
+  "shipping": {
+    "title": "ಶಿಪ್ಪಿಂಗ್ ವಿಳಾಸ",
+    "fullName": "ಪೂರ್ಣ ಹೆಸರು",
+    "address": "ವಿಳಾಸ",
+    "addressLine2": "ಅಪಾರ್ಟ್ಮೆಂಟ್, ಸೂಟ್, ಇತ್ಯಾದಿ (ಐಚ್ಛಿಕ)",
+    "city": "ನಗರ",
+    "state": "ರಾಜ್ಯ",
+    "pincode": "ಪಿನ್ ಕೋಡ್",
+    "phone": "ದೂರವಾಣಿ ಸಂಖ್ಯೆ",
+    "saveAddress": "ಭವಿಷ್ಯದ ಆರ್ಡರ್‌ಗಳಿಗಾಗಿ ಈ ವಿಳಾಸವನ್ನು ಉಳಿಸಿ",
+    "deliveryEstimate": "ಅಂದಾಜು ವಿತರಣೆ: {{days}} ವ್ಯವಹಾರ ದಿನಗಳು"
+  },
+  "payment": {
+    "title": "ಪಾವತಿ ವಿಧಾನ",
+    "creditCard": "ಕ್ರೆಡಿಟ್ / ಡೆಬಿಟ್ ಕಾರ್ಡ್",
+    "upi": "UPI",
+    "netBanking": "ನೆಟ್ ಬ್ಯಾಂಕಿಂಗ್",
+    "cod": "ಕ್ಯಾಶ್ ಆನ್ ಡೆಲಿವರಿ",
+    "cardNumber": "ಕಾರ್ಡ್ ಸಂಖ್ಯೆ",
+    "cardName": "ಕಾರ್ಡ್‌ನಲ್ಲಿ ಹೆಸರು",
+    "expiry": "ಮುಕ್ತಾಯ ದಿನಾಂಕ",
+    "cvv": "ಸಿ.ವಿ.ವಿ",
+    "upiId": "UPI ಐಡಿ",
+    "upiIdPlaceholder": "ನಿಮ್ಮ ಹೆಸರು@upi"
+  },
+  "review": {
+    "title": "ಪರಿಶೀಲನೆ ಆದೇಶ",
+    "orderSummary": "ಆದೇಶ ಸಾರಾಂಶ",
+    "items": "{{count}} ಐಟಂ",
+    "items_other": "{{count}} ಐಟಂಗಳು",
+    "subtotal": "ಉಪಮೊತ್ತ",
+    "shipping": "ಶಿಪ್ಪಿಂಗ್",
+    "freeShipping": "ಉಚಿತ",
+    "shippingFee": "₹{{amount}}",
+    "tax": "ತೆರಿಗೆ (GST 12%)",
+    "total": "ಒಟ್ಟು",
+    "shippingAddress": "ಶಿಪ್ಪಿಂಗ್ ವಿಳಾಸ",
+    "paymentMethod": "ಪಾವತಿ ವಿಧಾನ",
+    "edit": "ಸಂಪಾದಿಸು"
+  },
+  "actions": {
+    "continueToPayment": "ಪಾವತಿಗೆ ಮುಂದುವರಿಯಿರಿ",
+    "continueToReview": "ವಿಮರ್ಶೆಗೆ ಮುಂದುವರಿಯಿರಿ",
+    "placeOrder": "ಆದೇಶವನ್ನು ಇರಿಸಿ",
+    "processing": "ಪ್ರಕ್ರಿಯೆಗೊಳಿಸಲಾಗುತ್ತಿದೆ...",
+    "backToShipping": "ಶಿಪ್ಪಿಂಗ್ ಗೆ ಹಿಂತಿರುಗಿ",
+    "backToPayment": "ಪಾವತಿಗೆ ಹಿಂತಿರುಗಿ",
+    "returnToShop": "ಅಂಗಡಿ ಗೆ ಹಿಂತಿರುಗಿ"
+  },
+  "empty": {
+    "title": "ನಿಮ್ಮ ಕಾರ್ಟ್ ಖಾಲಿಯಾಗಿದೆ",
+    "returnToShop": "ಅಂಗಡಿ ಗೆ ಹಿಂತಿರುಗಿ"
+  },
+  "success": {
+    "title": "ಆರ್ಡರ್ ಅನ್ನು ಯಶಸ್ವಿಯಾಗಿ ಇರಿಸಲಾಗಿದೆ!",
+    "message": "ಕುಶಲಕರ್ಮಿಗಳನ್ನು ಬೆಂಬಲಿಸಿದ್ದಕ್ಕಾಗಿ ಧನ್ಯವಾದಗಳು. ನಿಮ್ಮ ಆದೇಶವನ್ನು ಇರಿಸಲಾಗಿದೆ.",
+    "orderNumber": "ಆರ್ಡರ್ ಸಂಖ್ಯೆ: {{number}}",
+    "continueShopping": "ಶಾಪಿಂಗ್ ಮುಂದುವರಿಸಿ"
+  },
+  "freeShippingThreshold": "₹5,000 ಕ್ಕಿಂತ ಹೆಚ್ಚಿನ ಆರ್ಡರ್‌ಗಳಿಗೆ ಉಚಿತ ಶಿಪ್ಪಿಂಗ್"
+}

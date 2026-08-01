@@ -1,0 +1,67 @@
+{
+  "hero": {
+    "tag": "ಕ್ರಾಫ್ಟ್ ಅಕಾಡೆಮಿ",
+    "title": "ಮಾಸ್ಟರ್ ಸಾಂಪ್ರದಾಯಿಕ \nಭಾರತೀಯ ಕರಕುಶಲ ವಸ್ತುಗಳು",
+    "subtitle": "ರಚನಾತ್ಮಕ ವೀಡಿಯೊ ಕೋರ್ಸ್‌ಗಳ ಮೂಲಕ ಭಾರತದ ಅತ್ಯುತ್ತಮ ಮಾಸ್ಟರ್ ಕುಶಲಕರ್ಮಿಗಳಿಂದ ನೇರವಾಗಿ ಕಲಿಯಿರಿ."
+  },
+  "search": {
+    "placeholder": "ಕೋರ್ಸ್‌ಗಳು, ಕರಕುಶಲ ವಸ್ತುಗಳು, ಬೋಧಕರನ್ನು ಹುಡುಕಿ..."
+  },
+  "filters": {
+    "allCourses": "ಎಲ್ಲಾ ಕೋರ್ಸ್‌ಗಳು",
+    "beginner": "ಹರಿಕಾರ",
+    "intermediate": "ಮಧ್ಯಂತರ",
+    "advanced": "ಸುಧಾರಿತ",
+    "free": "ಉಚಿತ",
+    "paid": "ಪಾವತಿಸಲಾಗಿದೆ",
+    "popular": "ಜನಪ್ರಿಯ",
+    "newest": "ಹೊಸತು",
+    "highestRated": "ಅತ್ಯಧಿಕ ರೇಟಿಂಗ್"
+  },
+  "course": {
+    "by": "{{ಬೋಧಕ}} ಮೂಲಕ",
+    "lessons": "{{count}} ಪಾಠ",
+    "lessons_other": "{{count}} ಪಾಠಗಳು",
+    "students": "{{count}} ವಿದ್ಯಾರ್ಥಿ",
+    "students_other": "{{count}} ವಿದ್ಯಾರ್ಥಿಗಳು",
+    "duration": "ಅವಧಿ",
+    "difficulty": "ಕಷ್ಟ",
+    "enrollNow": "ಈಗ ನೋಂದಾಯಿಸಿ",
+    "startLearning": "ಕಲಿಯಲು ಪ್ರಾರಂಭಿಸಿ",
+    "continueLearning": "ಕಲಿಕೆಯನ್ನು ಮುಂದುವರಿಸಿ",
+    "enrolled": "ದಾಖಲಾಗಿದೆ",
+    "completionRate": "{{percent}}% ಪೂರ್ಣಗೊಂಡಿದೆ",
+    "certificate": "ಪೂರ್ಣಗೊಂಡ ಪ್ರಮಾಣಪತ್ರ",
+    "description": "ವಿವರಣೆ",
+    "curriculum": "ಪಠ್ಯಕ್ರಮ",
+    "reviews": "ವಿಮರ್ಶೆಗಳು",
+    "instructor": "ಬೋಧಕ",
+    "whatYouLearn": "ನೀವು ಏನು ಕಲಿಯುವಿರಿ",
+    "requirements": "ಅವಶ್ಯಕತೆಗಳು",
+    "includes": "ಈ ಕೋರ್ಸ್ ಒಳಗೊಂಡಿದೆ",
+    "videoHours": "{{hours}} ಗಂಟೆಗಳ ವೀಡಿಯೊ",
+    "downloadableResources": "{{count}} ಡೌನ್‌ಲೋಡ್ ಮಾಡಬಹುದಾದ ಸಂಪನ್ಮೂಲ",
+    "downloadableResources_other": "{{count}} ಡೌನ್‌ಲೋಡ್ ಮಾಡಬಹುದಾದ ಸಂಪನ್ಮೂಲಗಳು",
+    "lifetimeAccess": "ಜೀವಮಾನದ ಪ್ರವೇಶ",
+    "completionCertificate": "ಪೂರ್ಣಗೊಂಡ ಪ್ರಮಾಣಪತ್ರ",
+    "mobileAccess": "ಮೊಬೈಲ್ ಮತ್ತು ಡೆಸ್ಕ್‌ಟಾಪ್‌ನಲ್ಲಿ ಪ್ರವೇಶ"
+  },
+  "player": {
+    "lesson": "ಪಾಠ {{ಸಂಖ್ಯೆ}}",
+    "nextLesson": "ಮುಂದಿನ ಪಾಠ",
+    "previousLesson": "ಹಿಂದಿನ ಪಾಠ",
+    "markComplete": "ಪೂರ್ಣಗೊಂಡಿದೆ ಎಂದು ಗುರುತಿಸಿ",
+    "completed": "ಪೂರ್ಣಗೊಂಡಿದೆ",
+    "notes": "ಟಿಪ್ಪಣಿಗಳು",
+    "resources": "ಸಂಪನ್ಮೂಲಗಳು",
+    "discussion": "ಚರ್ಚೆ",
+    "transcript": "ಪ್ರತಿಲಿಪಿ",
+    "autoplay": "ಸ್ವಯಂಪ್ಲೇ",
+    "speed": "ವೇಗ",
+    "quality": "ಗುಣಮಟ್ಟ"
+  },
+  "empty": {
+    "noCourses": "ಯಾವುದೇ ಕೋರ್ಸ್‌ಗಳು ಕಂಡುಬಂದಿಲ್ಲ",
+    "noCoursesHint": "ನಿಮ್ಮ ಹುಡುಕಾಟ ಅಥವಾ ಫಿಲ್ಟರ್‌ಗಳನ್ನು ಸರಿಹೊಂದಿಸಲು ಪ್ರಯತ್ನಿಸಿ."
+  }
+}

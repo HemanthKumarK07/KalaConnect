@@ -1,0 +1,59 @@
+{
+  "hero": {
+    "tag": "Community",
+    "title": "Join the Craft\nCommunity",
+    "subtitle": "Connect with artisans, share your work, and be part of India's craft revival."
+  },
+  "topics": {
+    "all": "All Topics",
+    "generalDiscussion": "General Discussion",
+    "craftTechniques": "Craft Techniques",
+    "businessTips": "Business Tips",
+    "showcaseWork": "Showcase Your Work",
+    "questionsHelp": "Questions & Help",
+    "events": "Events & Meetups"
+  },
+  "post": {
+    "createPost": "Create a Post",
+    "postPlaceholder": "Share something with the community...",
+    "post": "Post",
+    "posting": "Posting...",
+    "like": "Like",
+    "comment": "Comment",
+    "share": "Share",
+    "reply": "Reply",
+    "translate": "Translate",
+    "showOriginal": "Show Original",
+    "editPost": "Edit",
+    "deletePost": "Delete",
+    "reportPost": "Report",
+    "comments": "{{count}} comment",
+    "comments_other": "{{count}} comments",
+    "likes": "{{count}} like",
+    "likes_other": "{{count}} likes",
+    "noComments": "No comments yet. Be the first!",
+    "loginToPost": "Please log in to create a post",
+    "loginToComment": "Please log in to comment",
+    "postSuccess": "Post created successfully!",
+    "postError": "Failed to create post. Please try again."
+  },
+  "challenges": {
+    "title": "Monthly Challenges",
+    "currentChallenge": "Current Challenge",
+    "upcomingChallenges": "Upcoming",
+    "pastChallenges": "Past Challenges",
+    "participants": "{{count}} participant",
+    "participants_other": "{{count}} participants",
+    "daysLeft": "{{count}} day left",
+    "daysLeft_other": "{{count}} days left",
+    "joinChallenge": "Join Challenge",
+    "submitEntry": "Submit Entry"
+  },
+  "search": {
+    "placeholder": "Search posts, topics, members..."
+  },
+  "empty": {
+    "noPosts": "No posts yet",
+    "noPostsHint": "Be the first to share something with the community!"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "title": "चेकआउट",
+  "steps": { "shipping": "शिपिंग", "payment": "भुगतान", "review": "समीक्षा" },
+  "shipping": { "title": "शिपिंग पता", "fullName": "पूरा नाम", "address": "पता", "addressLine2": "अपार्टमेंट, सुइट, आदि (वैकल्पिक)", "city": "शहर", "state": "राज्य", "pincode": "पिन कोड", "phone": "फ़ोन नंबर", "saveAddress": "भविष्य के ऑर्डर के लिए यह पता सहेजें", "deliveryEstimate": "अनुमानित डिलीवरी: {{days}} कार्य दिवस" },
+  "payment": { "title": "भुगतान विधि", "creditCard": "क्रेडिट / डेबिट कार्ड", "upi": "UPI", "netBanking": "नेट बैंकिंग", "cod": "कैश ऑन डिलीवरी", "cardNumber": "कार्ड नंबर", "cardName": "कार्ड पर नाम", "expiry": "समाप्ति तिथि", "cvv": "CVV", "upiId": "UPI ID", "upiIdPlaceholder": "yourname@upi" },
+  "review": { "title": "ऑर्डर की समीक्षा", "orderSummary": "ऑर्डर सारांश", "items": "{{count}} आइटम", "items_other": "{{count}} आइटम", "subtotal": "उप-योग", "shipping": "शिपिंग", "freeShipping": "मुफ़्त", "shippingFee": "₹{{amount}}", "tax": "कर (GST 12%)", "total": "कुल", "shippingAddress": "शिपिंग पता", "paymentMethod": "भुगतान विधि", "edit": "संपादित करें" },
+  "actions": { "continueToPayment": "भुगतान पर जारी रखें", "continueToReview": "समीक्षा पर जारी रखें", "placeOrder": "ऑर्डर दें", "processing": "प्रोसेसिंग...", "backToShipping": "शिपिंग पर वापस", "backToPayment": "भुगतान पर वापस", "returnToShop": "दुकान पर वापस जाएं" },
+  "empty": { "title": "आपका कार्ट खाली है", "returnToShop": "दुकान पर वापस जाएं" },
+  "success": { "title": "ऑर्डर सफलतापूर्वक दिया गया!", "message": "कारीगरों का समर्थन करने के लिए धन्यवाद। आपका ऑर्डर दिया गया है।", "orderNumber": "ऑर्डर नंबर: {{number}}", "continueShopping": "खरीदारी जारी रखें" },
+  "freeShippingThreshold": "₹5,000 से अधिक के ऑर्डर पर मुफ़्त शिपिंग"
+}

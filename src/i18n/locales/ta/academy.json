@@ -1,0 +1,67 @@
+{
+  "hero": {
+    "tag": "கைவினை அகாடமி",
+    "title": "மாஸ்டர் பாரம்பரியம் \nஇந்திய கைவினைப்பொருட்கள்",
+    "subtitle": "கட்டமைக்கப்பட்ட வீடியோ படிப்புகள் மூலம் இந்தியாவின் தலைசிறந்த கைவினைஞர்களிடமிருந்து நேரடியாகக் கற்றுக்கொள்ளுங்கள்."
+  },
+  "search": {
+    "placeholder": "தேடல் படிப்புகள், கைவினைப்பொருட்கள், பயிற்றுனர்கள்..."
+  },
+  "filters": {
+    "allCourses": "அனைத்து படிப்புகள்",
+    "beginner": "ஆரம்பநிலை",
+    "intermediate": "இடைநிலை",
+    "advanced": "மேம்பட்டது",
+    "free": "இலவசம்",
+    "paid": "செலுத்தப்பட்டது",
+    "popular": "பிரபலமானது",
+    "newest": "புதியது",
+    "highestRated": "மிக உயர்ந்த மதிப்பீடு"
+  },
+  "course": {
+    "by": "மூலம் {{ பயிற்றுவிப்பாளர் }}",
+    "lessons": "{{count}} பாடம்",
+    "lessons_other": "{{count}} பாடங்கள்",
+    "students": "{{count}} மாணவர்",
+    "students_other": "{{count}} மாணவர்கள்",
+    "duration": "கால அளவு",
+    "difficulty": "சிரமம்",
+    "enrollNow": "இப்போது பதிவு செய்யவும்",
+    "startLearning": "கற்றலைத் தொடங்குங்கள்",
+    "continueLearning": "கற்றலைத் தொடரவும்",
+    "enrolled": "பதிவுசெய்யப்பட்டது",
+    "completionRate": "{{percent}}% முடிந்தது",
+    "certificate": "முடித்ததற்கான சான்றிதழ்",
+    "description": "விளக்கம்",
+    "curriculum": "பாடத்திட்டம்",
+    "reviews": "விமர்சனங்கள்",
+    "instructor": "பயிற்றுவிப்பாளர்",
+    "whatYouLearn": "நீங்கள் என்ன கற்றுக் கொள்வீர்கள்",
+    "requirements": "தேவைகள்",
+    "includes": "இந்த பாடநெறி அடங்கும்",
+    "videoHours": "{{hours}} மணிநேர வீடியோ",
+    "downloadableResources": "{{count}} தரவிறக்கம் செய்யக்கூடிய ஆதாரம்",
+    "downloadableResources_other": "{{count}} பதிவிறக்கக்கூடிய ஆதாரங்கள்",
+    "lifetimeAccess": "வாழ்நாள் அணுகல்",
+    "completionCertificate": "முடித்ததற்கான சான்றிதழ்",
+    "mobileAccess": "மொபைல் மற்றும் டெஸ்க்டாப்பில் அணுகல்"
+  },
+  "player": {
+    "lesson": "பாடம் {{number}}",
+    "nextLesson": "அடுத்த பாடம்",
+    "previousLesson": "முந்தைய பாடம்",
+    "markComplete": "முழுமையானதாகக் குறிக்கவும்",
+    "completed": "முடிக்கப்பட்டது",
+    "notes": "குறிப்புகள்",
+    "resources": "வளங்கள்",
+    "discussion": "கலந்துரையாடல்",
+    "transcript": "டிரான்ஸ்கிரிப்ட்",
+    "autoplay": "ஆட்டோபிளே",
+    "speed": "வேகம்",
+    "quality": "தரம்"
+  },
+  "empty": {
+    "noCourses": "படிப்புகள் எதுவும் இல்லை",
+    "noCoursesHint": "உங்கள் தேடல் அல்லது வடிப்பான்களை சரிசெய்ய முயற்சிக்கவும்."
+  }
+}

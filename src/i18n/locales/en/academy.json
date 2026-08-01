@@ -1,0 +1,67 @@
+{
+  "hero": {
+    "tag": "Craft Academy",
+    "title": "Master Traditional\nIndian Crafts",
+    "subtitle": "Learn directly from India's finest master artisans through structured video courses."
+  },
+  "search": {
+    "placeholder": "Search courses, crafts, instructors..."
+  },
+  "filters": {
+    "allCourses": "All Courses",
+    "beginner": "Beginner",
+    "intermediate": "Intermediate",
+    "advanced": "Advanced",
+    "free": "Free",
+    "paid": "Paid",
+    "popular": "Popular",
+    "newest": "Newest",
+    "highestRated": "Highest Rated"
+  },
+  "course": {
+    "by": "by {{instructor}}",
+    "lessons": "{{count}} lesson",
+    "lessons_other": "{{count}} lessons",
+    "students": "{{count}} student",
+    "students_other": "{{count}} students",
+    "duration": "Duration",
+    "difficulty": "Difficulty",
+    "enrollNow": "Enroll Now",
+    "startLearning": "Start Learning",
+    "continueLearning": "Continue Learning",
+    "enrolled": "Enrolled",
+    "completionRate": "{{percent}}% complete",
+    "certificate": "Certificate of Completion",
+    "description": "Description",
+    "curriculum": "Curriculum",
+    "reviews": "Reviews",
+    "instructor": "Instructor",
+    "whatYouLearn": "What You'll Learn",
+    "requirements": "Requirements",
+    "includes": "This course includes",
+    "videoHours": "{{hours}} hours of video",
+    "downloadableResources": "{{count}} downloadable resource",
+    "downloadableResources_other": "{{count}} downloadable resources",
+    "lifetimeAccess": "Lifetime access",
+    "completionCertificate": "Certificate of completion",
+    "mobileAccess": "Access on mobile and desktop"
+  },
+  "player": {
+    "lesson": "Lesson {{number}}",
+    "nextLesson": "Next Lesson",
+    "previousLesson": "Previous Lesson",
+    "markComplete": "Mark as Complete",
+    "completed": "Completed",
+    "notes": "Notes",
+    "resources": "Resources",
+    "discussion": "Discussion",
+    "transcript": "Transcript",
+    "autoplay": "Autoplay",
+    "speed": "Speed",
+    "quality": "Quality"
+  },
+  "empty": {
+    "noCourses": "No courses found",
+    "noCoursesHint": "Try adjusting your search or filters."
+  }
+}

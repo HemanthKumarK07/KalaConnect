@@ -1,0 +1,8 @@
+<svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Center Petal / Loop -->
+  <path d="M 50 15 C 70 40 70 65 50 90 C 30 65 30 40 50 15 Z" stroke="#8B5E3C" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" />
+  <!-- Left Petal / Loop -->
+  <path d="M 50 90 C 20 85 5 50 15 25 C 30 40 40 60 50 90" stroke="#C97A40" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" />
+  <!-- Right Petal / Loop -->
+  <path d="M 50 90 C 80 85 95 50 85 25 C 70 40 60 60 50 90" stroke="#D9A441" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" />
+</svg>

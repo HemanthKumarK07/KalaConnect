@@ -1,0 +1,19 @@
+.admin-page {
+  display: flex;
+  min-height: 100vh;
+  padding-top: var(--nav-height);
+  background: var(--color-bg);
+}
+
+.admin-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-6);
+  margin-top: var(--space-6);
+}
+
+@media (max-width: 768px) {
+  .admin-grid {
+    grid-template-columns: 1fr;
+  }
+}
