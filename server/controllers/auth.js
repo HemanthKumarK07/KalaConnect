@@ -28,36 +28,52 @@ export const signup = async (req, res, next) => {
       role: role || 'customer',
     });
 
-    // Generate Verification Token
-    const verificationToken = generateVerificationToken(user._id);
-    user.verificationToken = verificationToken;
-    user.verificationTokenExpire = Date.now() + 24 * 60 * 60 * 1000; // 24 hours
-    await user.save({ validateBeforeSave: false });
+    // --- EMAIL VERIFICATION (skipped when REQUIRE_EMAIL_VERIFICATION=false) ---
+    const requireVerification = process.env.REQUIRE_EMAIL_VERIFICATION !== 'false';
 
-    // Create verification URL
-    const frontendUrl = process.env.FRONTEND_URL || 'http://localhost:5173';
-    const verificationUrl = `${frontendUrl}/verify-email/${verificationToken}`;
-
-    // Send Email
-    try {
-      await sendEmail({
-        email: user.email,
-        subject: 'KalaConnect - Verify your Email',
-        html: verificationEmailTemplate(verificationUrl)
-      });
-
-      res.status(201).json({
-        success: true,
-        message: 'Account created! Please check your email to verify your account before logging in.',
-      });
-    } catch (error) {
-      user.verificationToken = undefined;
-      user.verificationTokenExpire = undefined;
+    if (requireVerification) {
+      // Generate Verification Token (random hex)
+      const verificationToken = generateVerificationToken();
+      // Hash the token and store the hash in the database
+      user.verificationToken = crypto
+        .createHash('sha256')
+        .update(verificationToken)
+        .digest('hex');
+      user.verificationTokenExpire = Date.now() + 24 * 60 * 60 * 1000; // 24 hours
       await user.save({ validateBeforeSave: false });
-      
-      console.error('Email could not be sent', error);
-      return res.status(500).json({ success: false, message: 'Email could not be sent' });
+
+      // Create verification URL
+      const frontendUrl = process.env.FRONTEND_URL || 'http://localhost:5173';
+      const verificationUrl = `${frontendUrl}/verify-email/${verificationToken}`;
+
+      // Send Email
+      try {
+        await sendEmail({
+          email: user.email,
+          subject: 'KalaConnect - Verify your Email',
+          html: verificationEmailTemplate(verificationUrl)
+        });
+
+        return res.status(201).json({
+          success: true,
+          message: 'Account created! Please check your email to verify your account before logging in.',
+        });
+      } catch (error) {
+        user.verificationToken = undefined;
+        user.verificationTokenExpire = undefined;
+        await user.save({ validateBeforeSave: false });
+
+        console.error('Email could not be sent', error);
+        return res.status(500).json({ success: false, message: 'Email could not be sent' });
+      }
     }
+
+    // Verification disabled (local dev) — account is ready to login immediately
+    return res.status(201).json({
+      success: true,
+      message: 'Account created. Please login.',
+    });
+    // ---------------------------------------------------------------------------
   } catch (error) {
     next(error);
   }
@@ -68,12 +84,15 @@ export const signup = async (req, res, next) => {
 // @access  Public
 export const verifyEmail = async (req, res, next) => {
   try {
-    // We are passing a JWT as the verification token
-    const token = req.params.token;
+    // Hash the incoming token to compare with stored hash
+    const verificationToken = crypto
+      .createHash('sha256')
+      .update(req.params.token)
+      .digest('hex');
     
     // Find user with this token and check expiry
     const user = await User.findOne({
-      verificationToken: token,
+      verificationToken: verificationToken,
       verificationTokenExpire: { $gt: Date.now() }
     });
 
@@ -156,9 +175,14 @@ export const login = async (req, res, next) => {
       await user.save({ validateBeforeSave: false });
     }
 
-    if (!user.isEmailVerified) {
+    // --- EMAIL VERIFICATION GATE ---
+    // Controlled by REQUIRE_EMAIL_VERIFICATION env var.
+    // Set to "false" in local development to skip this check.
+    const requireVerification = process.env.REQUIRE_EMAIL_VERIFICATION !== 'false';
+    if (requireVerification && !user.isEmailVerified) {
       return res.status(401).json({ success: false, message: 'Please verify your email before logging in.' });
     }
+    // --------------------------------
 
     const token = generateToken(user._id);
 

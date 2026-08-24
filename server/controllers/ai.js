@@ -67,12 +67,20 @@ export const generateChatResponse = async (req, res, next) => {
       message: aiMessage, // Groq returns { role: 'assistant', content: '...' } just like OpenAI
     });
   } catch (error) {
-    if (error.status === 401 || (error.message && error.message.includes('key'))) {
-       return res.status(500).json({ success: false, message: 'AI Assistant is currently unavailable due to missing API key configuration.' });
+    // Key is genuinely absent from .env
+    if (!process.env.GROQ_API_KEY) {
+      return res.status(500).json({ success: false, message: 'AI service is not configured. Please configure the server API key.' });
     }
+    // Groq rejected the key (401) or forbidden (403)
+    if (error.status === 401 || error.status === 403) {
+      console.error('Groq auth error — check GROQ_API_KEY in server/.env');
+      return res.status(500).json({ success: false, message: 'AI service authentication failed. Please check the server API key configuration.' });
+    }
+    // Rate limit
     if (error.status === 429) {
-       return res.status(429).json({ success: false, message: 'AI Assistant rate limit exceeded. Please try again later.' });
+      return res.status(429).json({ success: false, message: 'AI Assistant rate limit exceeded. Please try again in a moment.' });
     }
+    // All other errors
     next(error);
   }
 };

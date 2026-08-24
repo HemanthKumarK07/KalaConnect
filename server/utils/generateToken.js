@@ -7,10 +7,10 @@ const generateToken = (id) => {
   });
 };
 
-export const generateVerificationToken = (id) => {
-  return jwt.sign({ id }, process.env.JWT_SECRET, {
-    expiresIn: '24h', // Email verification expires in 24 hours
-  });
+// Generate verification token (random hex, not JWT)
+// Returns the plain token - caller will hash and store it
+export const generateVerificationToken = () => {
+  return crypto.randomBytes(20).toString('hex');
 };
 
 // Generate and hash password reset token (Random hex, not JWT)

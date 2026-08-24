@@ -28,8 +28,23 @@ const startServer = async () => {
 
 // Security Middleware
 app.use(helmet());
+
+// Accept CLIENT_URL from env, plus both default Vite ports as fallbacks.
+// This prevents CORS failures when Vite increments its port (e.g. 5173 → 5174).
+const allowedOrigins = [
+  process.env.CLIENT_URL,
+  'http://localhost:5173',
+  'http://localhost:5174',
+].filter(Boolean); // remove undefined if CLIENT_URL is not set
+
 app.use(cors({
   origin: process.env.CLIENT_URL || 'http://localhost:5173',
+  origin: (origin, callback) => {
+    // Allow requests with no origin (e.g. curl, Postman, server-to-server)
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.includes(origin)) return callback(null, true);
+    callback(new Error(`CORS: origin ${origin} is not allowed`));
+  },
   credentials: true
 }));
 
