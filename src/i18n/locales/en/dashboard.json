@@ -1,6 +1,28 @@
 {
   "title": "Dashboard",
-  "welcome": "Welcome back, {{name}}!",
+  "welcome": {
+    "artisan": "Manage your craft, products, and orders from one place.",
+    "customer": "Discover authentic crafts and manage your orders."
+  },
+  "sidebar": {
+    "overview": "Overview",
+    "products": "Products",
+    "orders": "Orders",
+    "analytics": "Analytics",
+    "students": "Students",
+    "reviews": "Reviews",
+    "notifications": "Notifications",
+    "settings": "Settings",
+    "myOrders": "My Orders",
+    "wishlist": "Wishlist",
+    "myCourses": "My Courses",
+    "certificates": "Certificates"
+  },
+  "recentOrders": {
+    "title": "Recent Orders",
+    "noOrders": "No recent orders.",
+    "viewAll": "View All"
+  },
   "overview": "Overview",
   "tabs": {
     "overview": "Overview",
@@ -17,6 +39,13 @@
     "totalOrders": "Total Orders",
     "totalProducts": "Total Products",
     "totalRevenue": "Total Revenue",
+    "activeOrders": "Active Orders",
+    "courseStudents": "Course Students",
+    "ordersPlaced": "Orders Placed",
+    "wishlistItems": "Wishlist Items",
+    "coursesEnrolled": "Courses Enrolled",
+    "certificates": "Certificates",
+    "certificatesNew": "New",
     "pendingOrders": "Pending Orders",
     "completedOrders": "Completed Orders",
     "averageRating": "Average Rating",

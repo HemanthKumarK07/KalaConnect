@@ -2,7 +2,8 @@ import { useState, useEffect, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import {
   BarChart3, Package, ShoppingBag, Users, TrendingUp, Star, Clock, Plus,
-  Settings, Bell, ArrowUpRight, ArrowDownRight, Menu, Heart, BookOpen, Award
+  Settings, Bell, ArrowUpRight, ArrowDownRight, Menu, Heart, BookOpen, Award,
+  ShieldCheck, Upload
 } from 'lucide-react';
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import { useTranslation } from 'react-i18next';
@@ -10,7 +11,8 @@ import Button from '../components/Button';
 import SkeletonLoader from '../components/SkeletonLoader';
 import useAuthStore from '../store/useAuthStore';
 import Logo from '../components/Logo';
-import ProductFormModal from '../components/ProductFormModal';
+import { verifyArtisanCraft } from '../api/ai';
+import { useToast } from '../components/Toast';
 import './Dashboard.css';
 
 // Sidebar items per role
@@ -41,10 +43,12 @@ export default function Dashboard() {
   // Dashboard state
   const [dashboardData, setDashboardData] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [editingProduct, setEditingProduct] = useState(null);
-  const [isProductModalOpen, setIsProductModalOpen] = useState(false);
+  const [verificationFile, setVerificationFile] = useState(null);
+  const [isVerifying, setIsVerifying] = useState(false);
   
   const { user, token } = useAuthStore();
+  const { showToast } = useToast();
+  const [isAIVerified, setIsAIVerified] = useState(user?.isAIVerified === true);
 
   const isArtisan = user?.role === 'artisan' || user?.role === 'admin';
   const sidebarItems = isArtisan ? artisanSidebarItems : customerSidebarItems;
@@ -102,6 +106,30 @@ export default function Dashboard() {
   const recentOrders = dashboardData?.recentOrders || [];
   const products = dashboardData?.products || [];
   const revenueHistory = dashboardData?.revenueHistory || [];
+
+  const handleVerification = async (event) => {
+    event.preventDefault();
+
+    if (!verificationFile) {
+      showToast('Please upload an image of your craft first.', 'info');
+      return;
+    }
+
+    setIsVerifying(true);
+    try {
+      const response = await verifyArtisanCraft(verificationFile);
+      if (response.verified) {
+        setIsAIVerified(true);
+        showToast(response.reason || 'Craft technique authenticated.', 'success');
+      } else {
+        showToast(`Verification failed: ${response.reason || 'The image could not be authenticated.'}`, 'error');
+      }
+    } catch (error) {
+      showToast(error.message || 'Verification failed. Please try again.', 'error');
+    } finally {
+      setIsVerifying(false);
+    }
+  };
 
   const statusColor = (status) => {
     switch (status) {
@@ -171,6 +199,36 @@ export default function Dashboard() {
           </motion.div>
         ))}
       </div>
+
+      {isArtisan && (
+        <motion.div className="dash-chart-card" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.35 }}>
+          <div className="dash-chart-card__header">
+            <h3 style={{ fontFamily: 'var(--font-heading)', fontWeight: 600 }}>Get AI Verified</h3>
+            {isAIVerified && <span className="badge badge--success"><ShieldCheck size={13} /> Verified</span>}
+          </div>
+          {isAIVerified ? (
+            <p style={{ color: 'var(--color-success)', display: 'flex', alignItems: 'center', gap: 'var(--space-2)' }}>
+              <ShieldCheck size={18} /> Your craft technique has been authenticated.
+            </p>
+          ) : (
+            <form onSubmit={handleVerification} style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-4)', flexWrap: 'wrap' }}>
+              <label className="input" style={{ flex: '1 1 260px', cursor: 'pointer' }}>
+                <Upload size={16} style={{ verticalAlign: 'middle', marginRight: 'var(--space-2)' }} />
+                {verificationFile ? verificationFile.name : 'Upload a craft image'}
+                <input
+                  type="file"
+                  accept="image/*"
+                  onChange={event => setVerificationFile(event.target.files?.[0] || null)}
+                  style={{ display: 'none' }}
+                />
+              </label>
+              <Button type="submit" variant="accent" size="sm" disabled={isVerifying} icon={<ShieldCheck size={15} />}>
+                {isVerifying ? 'Verifying...' : 'Submit for Verification'}
+              </Button>
+            </form>
+          )}
+        </motion.div>
+      )}
 
       {/* Revenue Chart — artisan only */}
       {isArtisan && revenueHistory.length > 0 && (

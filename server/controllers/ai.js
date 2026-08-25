@@ -26,6 +26,67 @@ Guidelines:
 5. If the user asks you to verify an image or translate something without providing it, politely ask them to provide the text or describe the image (as you are a text-based assistant in this interface).
 `;
 
+const VERIFICATION_SYSTEM_PROMPT = 'You are a strict Authenticity Validator for Indian handcrafted goods. Inspect the image for evidence of handloom, pottery, wood carving, GI tags, or artisan workspaces. Explicitly REJECT receipts, bills, invoices, selfies, or unrelated items. Return ONLY a raw JSON object with no markdown formatting: { "verified": boolean, "reason": "Detailed explanation of what you see and why it is accepted or rejected." }';
+
+// @desc    Verify an artisan craft image with xAI vision
+// @route   POST /api/ai/verify
+// @access  Private
+export const verifyArtisanCraft = async (req, res, next) => {
+  try {
+    const { image } = req.body;
+
+    if (!image || typeof image !== 'string') {
+      return res.status(400).json({ verified: false, reason: 'An encoded craft image is required.' });
+    }
+
+    if (!process.env.GROQ_API_KEY) {
+      return res.status(500).json({ verified: false, reason: 'AI verification is not configured.' });
+    }
+
+    const response = await fetch('https://api.x.ai/v1/chat/completions', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${process.env.GROQ_API_KEY}`
+      },
+      body: JSON.stringify({
+        model: 'grok-4.6',
+        messages: [
+          { role: 'system', content: VERIFICATION_SYSTEM_PROMPT },
+          {
+            role: 'user',
+            content: [
+              { type: 'text', text: 'Verify this artisan craft image.' },
+              { type: 'image_url', image_url: { url: `data:image/jpeg;base64,${image}` } }
+            ]
+          }
+        ]
+      })
+    });
+
+    const data = await response.json();
+    if (!response.ok) {
+      return res.status(response.status).json({ verified: false, reason: data.error?.message || 'AI verification request failed.' });
+    }
+
+    const content = data.choices?.[0]?.message?.content;
+    if (!content) {
+      return res.status(502).json({ verified: false, reason: 'AI returned an empty verification response.' });
+    }
+
+    const parsed = JSON.parse(content.replace(/^```json\s*|\s*```$/g, '').trim());
+    return res.status(200).json({
+      verified: parsed.verified === true,
+      reason: typeof parsed.reason === 'string' ? parsed.reason : 'The AI did not provide a verification reason.'
+    });
+  } catch (error) {
+    if (error instanceof SyntaxError) {
+      return res.status(502).json({ verified: false, reason: 'AI returned an invalid verification response.' });
+    }
+    next(error);
+  }
+};
+
 // @desc    Generate AI chat response
 // @route   POST /api/ai/chat
 // @access  Private

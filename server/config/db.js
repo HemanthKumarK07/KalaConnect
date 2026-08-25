@@ -1,5 +1,8 @@
+import dotenv from 'dotenv';
 import mongoose from 'mongoose';
 import dns from 'dns';
+
+dotenv.config();
 
 // Fix for Windows DNS resolution issue with MongoDB SRV records
 try {
@@ -13,14 +16,11 @@ if (dns.setDefaultResultOrder) {
 }
 
 const connectDB = async () => {
-  try {
-    const conn = await mongoose.connect(process.env.MONGODB_URI);
-    console.log(`✅ MongoDB Connected: ${conn.connection.host}`);
-  } catch (error) {
-    console.error(`❌ MongoDB Atlas Connection Failed: ${error.message}`);
-    console.log("⚠️ Server running in offline/demo mode");
-    // process.exit(1);
-  }
+  console.log("DB URI loaded:", process.env.MONGODB_URI ? "Yes (Atlas)" : "No (Undefined/Fallback)");
+
+  return mongoose.connect(process.env.MONGODB_URI)
+    .then(() => console.log("✅ MongoDB Connected"))
+    .catch(err => console.error("❌ MongoDB Connection Error:", err));
 };
 
 export default connectDB;
