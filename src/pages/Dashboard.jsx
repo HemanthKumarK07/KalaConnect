@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import {
   BarChart3, Package, ShoppingBag, Users, TrendingUp, Star, Clock, Plus,
@@ -53,28 +53,30 @@ export default function Dashboard() {
   const isArtisan = user?.role === 'artisan' || user?.role === 'admin';
   const sidebarItems = isArtisan ? artisanSidebarItems : customerSidebarItems;
 
-  // Fetch dashboard data
-  useEffect(() => {
-    const fetchDashboard = async () => {
-      try {
-        const res = await fetch('http://localhost:5000/api/dashboard', {
-          headers: {
-            Authorization: `Bearer ${token}`
-          }
-        });
-        const json = await res.json();
-        if (json.success) {
-          setDashboardData(json.data);
-        }
-      } catch (error) {
-        console.error('Failed to fetch dashboard data', error);
-      } finally {
-        setLoading(false);
-      }
-    };
-    
-    if (token) fetchDashboard();
+  const fetchDashboard = useCallback(async () => {
+    try {
+      const res = await fetch('http://localhost:5000/api/dashboard', {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+      const json = await res.json();
+      if (json.success) setDashboardData(json.data);
+    } catch (error) {
+      console.error('Failed to fetch dashboard data', error);
+    } finally { setLoading(false); }
   }, [token]);
+
+  useEffect(() => { if (token) fetchDashboard(); }, [token, fetchDashboard]);
+
+  const openProductModal = (product = null) => {
+    setEditingProduct(product);
+    setIsProductModalOpen(true);
+  };
+
+  const handleProductSaved = async () => {
+    setIsProductModalOpen(false);
+    setEditingProduct(null);
+    await fetchDashboard();
+  };
 
   // User initials for avatar
   const initials = user?.name
@@ -271,12 +273,12 @@ export default function Dashboard() {
         <motion.div className="dash-products-card" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.6 }}>
           <div className="dash-chart-card__header">
             <h3 style={{ fontFamily: 'var(--font-heading)', fontWeight: 600 }}>Your Products</h3>
-            <Button variant="outline" size="sm" icon={<Plus size={14} />}>Add New</Button>
+            <Button variant="outline" size="sm" icon={<Plus size={14} />} onClick={() => openProductModal()}>Add New</Button>
           </div>
           {products.length > 0 ? (
             <div className="dash-products-grid">
               {products.slice(0, 6).map((p, i) => (
-                <div key={p._id} className="dash-product-mini">
+                <button type="button" key={p._id} className="dash-product-mini dash-product-mini--button" onClick={() => openProductModal(p)} title={`Edit ${p.shortTitle}`}>
                   <div className="dash-product-mini__image" style={{ background: ['linear-gradient(135deg, #D4B896, #8A6A4A)', 'linear-gradient(135deg, #A8C4B8, #4F6958)', 'linear-gradient(135deg, #B8A8C4, #6B5C7A)'][i % 3] }} />
                   <div>
                     <p style={{ fontWeight: 500, fontSize: 'var(--text-sm)', marginBottom: '2px' }}>{p.shortTitle}</p>
@@ -286,7 +288,7 @@ export default function Dashboard() {
                       <span><Star size={11} fill="#C9A66B" stroke="#C9A66B" /> {p.rating}</span>
                     </div>
                   </div>
-                </div>
+                </button>
               ))}
             </div>
           ) : (
@@ -321,13 +323,13 @@ export default function Dashboard() {
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
       <div className="dash-chart-card__header" style={{ marginBottom: 'var(--space-6)' }}>
         <h2 style={{ fontFamily: 'var(--font-heading)', fontWeight: 600, fontSize: 'var(--text-xl)' }}>All Products</h2>
-        <Button variant="accent" size="sm" icon={<Plus size={14} />}>Add Product</Button>
+        <Button variant="accent" size="sm" icon={<Plus size={14} />} onClick={() => openProductModal()}>Add Product</Button>
       </div>
       <div className="dash-products-card">
         {products.length > 0 ? (
           <div className="dash-products-grid">
             {products.map((p, i) => (
-              <div key={p._id} className="dash-product-mini">
+              <button type="button" key={p._id} className="dash-product-mini dash-product-mini--button" onClick={() => openProductModal(p)} title={`Edit ${p.shortTitle}`}>
                 <div className="dash-product-mini__image" style={{ background: ['linear-gradient(135deg, #D4B896, #8A6A4A)', 'linear-gradient(135deg, #A8C4B8, #4F6958)', 'linear-gradient(135deg, #B8A8C4, #6B5C7A)'][i % 3] }} />
                 <div style={{ flex: 1 }}>
                   <p style={{ fontWeight: 500, fontSize: 'var(--text-sm)', marginBottom: '2px' }}>{p.shortTitle}</p>
@@ -338,7 +340,7 @@ export default function Dashboard() {
                     <span className="badge badge--success" style={{ marginLeft: 'auto' }}>{p.inStock ? 'In Stock' : 'Out'}</span>
                   </div>
                 </div>
-              </div>
+              </button>
             ))}
           </div>
         ) : (
@@ -449,12 +451,20 @@ export default function Dashboard() {
             </div>
           </div>
           {activeSidebar === 'overview' && isArtisan && (
-            <Button variant="accent" size="sm" icon={<Plus size={16} />}>Add Product</Button>
+            <Button variant="accent" size="sm" icon={<Plus size={16} />} onClick={() => openProductModal()}>Add Product</Button>
           )}
         </div>
 
         {renderContent()}
       </main>
+      {isArtisan && isProductModalOpen && (
+        <ProductFormModal
+          product={editingProduct}
+          token={token}
+          onClose={() => { setIsProductModalOpen(false); setEditingProduct(null); }}
+          onSaved={handleProductSaved}
+        />
+      )}
     </div>
   );
 }

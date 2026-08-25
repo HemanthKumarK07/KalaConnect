@@ -69,6 +69,11 @@ export default function ProductCard({ product, index = 0 }) {
                 <ShieldCheck size={12} /> {t('labels.handmade')}
               </span>
             )}
+            {product.isFairlyPriced !== false && (
+              <span className="badge badge--success" style={{ display: 'inline-flex', alignItems: 'center', gap: '3px', fontSize: '10px' }}>
+                ✓ Fairly Priced
+              </span>
+            )}
             {discount > 0 && (
               <span className="badge badge--accent">-{discount}%</span>
             )}
