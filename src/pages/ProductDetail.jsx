@@ -78,6 +78,11 @@ export default function ProductDetail() {
           <SectionReveal animation="fade-left" delay={0.1} className="pd-info">
             <div className="pd-info__badges">
               <span className="badge badge--handmade"><Shield size={12} /> {t('labels.handmade')}</span>
+              {product.isFairlyPriced !== false && (
+                <span className="badge badge--success" style={{ display: 'inline-flex', alignItems: 'center', gap: '4px' }}>
+                  ✓ Fairly Priced (Artisan Protected)
+                </span>
+              )}
               {discount > 0 && <span className="badge badge--accent">{discount}% {t('labels.discount')}</span>}
             </div>
 

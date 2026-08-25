@@ -41,6 +41,8 @@
 .dash-product-mini { display: flex; align-items: center; gap: var(--space-4); padding: var(--space-3) 0; border-bottom: 1px solid var(--color-border-light); }
 .dash-product-mini:last-child { border-bottom: none; }
 .dash-product-mini__image { width: 48px; height: 48px; border-radius: var(--radius-md); flex-shrink: 0; }
+.dash-product-mini--button { background: transparent; color: inherit; cursor: pointer; text-align: left; width: 100%; }
+.dash-product-mini--button:hover { background: var(--glass-2); border-radius: var(--radius-md); }
 
 .dash-mobile-toggle { display: none; background: none; border: none; color: var(--color-text-primary); cursor: pointer; padding: var(--space-1); border-radius: var(--radius-sm); }
 .dash-sidebar-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: calc(var(--z-navbar) + 1); backdrop-filter: blur(4px); }

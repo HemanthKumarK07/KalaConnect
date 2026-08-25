@@ -13,6 +13,7 @@ import userRoutes from './routes/user.js';
 import dashboardRoutes from './routes/dashboard.js';
 import communityRoutes from './routes/community.js';
 import aiRoutes from './routes/ai.js';
+import productRoutes from './routes/products.js';
 
 import { runSeed } from './seeder.js';
 
@@ -38,7 +39,6 @@ const allowedOrigins = [
 ].filter(Boolean); // remove undefined if CLIENT_URL is not set
 
 app.use(cors({
-  origin: process.env.CLIENT_URL || 'http://localhost:5173',
   origin: (origin, callback) => {
     // Allow requests with no origin (e.g. curl, Postman, server-to-server)
     if (!origin) return callback(null, true);
@@ -82,6 +82,7 @@ app.use('/api/users', userRoutes);
 app.use('/api/dashboard', dashboardRoutes);
 app.use('/api/community', communityRoutes);
 app.use('/api/ai', aiRoutes);
+app.use('/api/products', productRoutes);
 
 // Error Handling Middleware
 app.use(notFound);
