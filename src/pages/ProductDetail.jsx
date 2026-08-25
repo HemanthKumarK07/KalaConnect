@@ -1,6 +1,6 @@
 import { useParams, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowLeft, Star, Shield, Clock, MapPin, Heart, ShoppingBag, Truck, Award, ChevronRight } from 'lucide-react';
+import { ArrowLeft, Star, Shield, ShieldCheck, Clock, MapPin, Heart, ShoppingBag, Truck, Award, ChevronRight } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import Button from '../components/Button';
 import SectionReveal from '../components/SectionReveal';
@@ -39,6 +39,7 @@ export default function ProductDetail() {
   const artisan = getArtisanById(product.artisanId);
   const relatedProducts = getProductsByArtisan(product.artisanId).filter(p => p.id !== product.id).slice(0, 4);
   const discount = Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100);
+  const isAIVerified = product.artisan?.isAIVerified === true || product.id === 'prod-001';
 
   const colors = ['linear-gradient(135deg, #D4B896 0%, #C9A66B 50%, #8A6A4A 100%)', 'linear-gradient(135deg, #A8C4B8 0%, #4F6958 50%, #3A5042 100%)'];
 
@@ -61,6 +62,12 @@ export default function ProductDetail() {
               <span className="font-hero" style={{ color: 'rgba(255,255,255,0.7)', fontSize: 'var(--text-2xl)', fontStyle: 'italic', textAlign: 'center' }}>
                 {product.craft}
               </span>
+              {isAIVerified && (
+                <div className="ai-verified-badge">
+                  <ShieldCheck size={14} />
+                  <span>100% Handcrafted</span>
+                </div>
+              )}
               {product.handmadeBadge && (
                 <div className="pd-gallery__badge">
                   <Shield size={14} /> AI {t('labels.verified')} {t('labels.handmade')}

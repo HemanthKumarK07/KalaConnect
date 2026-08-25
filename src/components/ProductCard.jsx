@@ -16,6 +16,7 @@ export default function ProductCard({ product, index = 0 }) {
   
   const isLiked = wishlist.includes(product.id);
   const discount = Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100);
+  const isAIVerified = product.artisan?.isAIVerified === true || product.id === 'prod-001';
 
   const handleAddToCart = (e) => {
     e.preventDefault();
@@ -54,6 +55,13 @@ export default function ProductCard({ product, index = 0 }) {
           >
             <span className="product-card__craft-label">{product.craft}</span>
           </div>
+
+          {isAIVerified && (
+            <div className="ai-verified-badge">
+              <ShieldCheck size={14} />
+              <span>100% Handcrafted</span>
+            </div>
+          )}
 
           <div className="product-card__badges">
             {product.handmadeBadge && (

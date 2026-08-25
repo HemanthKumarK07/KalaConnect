@@ -1,6 +1,8 @@
 {
   "title": "ഡാഷ്ബോർഡ്",
-  "welcome": "തിരികെ സ്വാഗതം, {{name}}!",
+  "welcome": { "artisan": "നിങ്ങളുടെ കരകൗശലം, ഉൽപ്പന്നങ്ങൾ, ഓർഡറുകൾ എന്നിവ ഒരിടത്ത് നിയന്ത്രിക്കുക.", "customer": "ആധികാരിക കരകൗശല വസ്തുക്കൾ കണ്ടെത്തി നിങ്ങളുടെ ഓർഡറുകൾ നിയന്ത്രിക്കുക." },
+  "sidebar": { "overview": "അവലോകനം", "products": "ഉൽപ്പന്നങ്ങൾ", "orders": "ഓർഡറുകൾ", "analytics": "അനലിറ്റിക്സ്", "students": "വിദ്യാർത്ഥികൾ", "reviews": "അവലോകനങ്ങൾ", "notifications": "അറിയിപ്പുകൾ", "settings": "ക്രമീകരണങ്ങൾ", "myOrders": "എൻ്റെ ഓർഡറുകൾ", "wishlist": "വിഷ്‌ലിസ്റ്റ്", "myCourses": "എൻ്റെ കോഴ്സുകൾ", "certificates": "സർട്ടിഫിക്കറ്റുകൾ" },
+  "recentOrders": { "title": "സമീപകാല ഓർഡറുകൾ", "noOrders": "സമീപകാല ഓർഡറുകൾ ഇല്ല.", "viewAll": "എല്ലാം കാണുക" },
   "overview": "അവലോകനം",
   "tabs": {
     "overview": "അവലോകനം",
@@ -13,6 +15,13 @@
     "reviews": "അവലോകനങ്ങൾ"
   },
   "stats": {
+    "activeOrders": "സജീവ ഓർഡറുകൾ",
+    "courseStudents": "കോഴ്സ് വിദ്യാർത്ഥികൾ",
+    "ordersPlaced": "നൽകിയ ഓർഡറുകൾ",
+    "wishlistItems": "വിഷ്‌ലിസ്റ്റ് ഇനങ്ങൾ",
+    "coursesEnrolled": "ചേർന്ന കോഴ്സുകൾ",
+    "certificates": "സർട്ടിഫിക്കറ്റുകൾ",
+    "certificatesNew": "പുതിയത്",
     "totalSales": "മൊത്തം വിൽപ്പന",
     "totalOrders": "ആകെ ഓർഡറുകൾ",
     "totalProducts": "മൊത്തം ഉൽപ്പന്നങ്ങൾ",

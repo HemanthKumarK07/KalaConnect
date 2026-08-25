@@ -576,6 +576,34 @@ input:-webkit-autofill {
   color: var(--color-forest);
 }
 
+.ai-verified-badge {
+  position: absolute;
+  top: var(--space-3);
+  right: var(--space-3);
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid rgba(201, 166, 107, 0.5);
+  border-radius: var(--radius-full);
+  background: rgba(31, 52, 40, 0.76);
+  color: #f5dfaa;
+  font-family: var(--font-heading);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: var(--tracking-wide);
+  white-space: nowrap;
+  box-shadow: 0 0 18px rgba(201, 166, 107, 0.34), inset 0 0 10px rgba(134, 190, 142, 0.16);
+  backdrop-filter: var(--glass-blur-sm);
+  -webkit-backdrop-filter: var(--glass-blur-sm);
+}
+
+.ai-verified-badge svg {
+  color: #a8d5ad;
+  flex-shrink: 0;
+}
+
 /* ----------------------------------------------------------------
    TAG (section labels)
    ---------------------------------------------------------------- */
