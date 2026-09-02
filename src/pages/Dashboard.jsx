@@ -13,6 +13,8 @@ import useAuthStore from '../store/useAuthStore';
 import Logo from '../components/Logo';
 import { verifyArtisanCraft } from '../api/ai';
 import { useToast } from '../components/Toast';
+import ProductFormModal from '../components/ProductFormModal';
+import ArtisanAcademyDashboard from '../components/academy/ArtisanAcademyDashboard';
 import './Dashboard.css';
 
 // Sidebar items per role
@@ -20,6 +22,7 @@ const artisanSidebarItems = [
   { icon: <BarChart3 size={18} />, labelKey: 'overview' },
   { icon: <Package size={18} />, labelKey: 'products' },
   { icon: <ShoppingBag size={18} />, labelKey: 'orders' },
+  { icon: <BookOpen size={18} />, labelKey: 'academy' },
   { icon: <Users size={18} />, labelKey: 'students' },
   { icon: <Star size={18} />, labelKey: 'reviews' },
   { icon: <Bell size={18} />, labelKey: 'notifications' },
@@ -45,6 +48,8 @@ export default function Dashboard() {
   const [loading, setLoading] = useState(true);
   const [verificationFile, setVerificationFile] = useState(null);
   const [isVerifying, setIsVerifying] = useState(false);
+  const [editingProduct, setEditingProduct] = useState(null);
+  const [isProductModalOpen, setIsProductModalOpen] = useState(false);
   
   const { user, token } = useAuthStore();
   const { showToast } = useToast();
@@ -171,6 +176,8 @@ export default function Dashboard() {
         return renderPlaceholder(t('sidebar.notifications'), 'Your latest notifications.', <Bell size={40} />);
       case 'settings':
         return renderSettings();
+      case 'academy':
+        return isArtisan ? <ArtisanAcademyDashboard token={token} /> : renderPlaceholder(t('sidebar.myCourses'), 'Courses you are enrolled in.', <BookOpen size={40} />);
       case 'wishlist':
         return renderPlaceholder(t('sidebar.wishlist'), 'Your saved products will appear here.', <Heart size={40} />);
       case 'myCourses':

@@ -1,0 +1,111 @@
+.playlist-editor {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.playlist-editor__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--color-surface);
+  padding: var(--space-4) var(--space-6);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+}
+
+.back-btn {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--color-text-secondary);
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.back-btn:hover {
+  color: var(--color-text-primary);
+}
+
+.playlist-editor__actions {
+  display: flex;
+  gap: var(--space-3);
+}
+
+.playlist-editor__layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-6);
+  align-items: flex-start;
+}
+
+.empty-state {
+  padding: var(--space-8);
+  text-align: center;
+  color: var(--color-text-tertiary);
+  border: 1px dashed var(--color-border);
+  border-radius: var(--radius-md);
+  font-size: var(--text-sm);
+}
+
+.lessons-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.lesson-item {
+  display: flex;
+  align-items: center;
+  padding: var(--space-3);
+  background: var(--color-background);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  transition: all 0.2s;
+}
+
+.lesson-item.dragging {
+  opacity: 0.5;
+  background: var(--color-surface-hover);
+}
+
+.lesson-item__drag {
+  cursor: grab;
+  color: var(--color-text-tertiary);
+  padding-right: var(--space-2);
+}
+
+.lesson-item__drag:active {
+  cursor: grabbing;
+}
+
+.lesson-item__info {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  font-size: var(--text-sm);
+}
+
+.lesson-item__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.icon-btn {
+  color: var(--color-text-secondary);
+  padding: 4px;
+  border-radius: 4px;
+  transition: all 0.2s;
+}
+
+.icon-btn:hover {
+  background: var(--color-surface-hover);
+  color: var(--color-text-primary);
+}
+
+@media (max-width: 768px) {
+  .playlist-editor__layout {
+    grid-template-columns: 1fr;
+  }
+}

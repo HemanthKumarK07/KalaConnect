@@ -560,3 +560,161 @@ export const featuredCourses = courses.filter(c => c.featured);
 export const getCourseById = (id) => courses.find(c => c.id === id);
 
 export const getCoursesByCategory = (category) => courses.filter(c => c.category === category);
+
+// ---------------------------------------------------------------------------
+// Sample showcase courses — frontend only, no backend needed
+// Uses public YouTube embeds so videos play instantly in the iframe player
+// ---------------------------------------------------------------------------
+export const sampleCourses = [
+  {
+    id: 'sample-001',
+    title: 'Introduction to Blue Pottery — Jaipur Heritage',
+    shortTitle: 'Blue Pottery Basics',
+    instructor: 'Lakshmi Devi',
+    instructorId: 'art-001',
+    category: 'pottery',
+    difficulty: 'Beginner',
+    duration: '3 lessons',
+    totalHours: 1.5,
+    lessons: 3,
+    students: 1240,
+    rating: 4.9,
+    reviews: 342,
+    price: 0,
+    originalPrice: 0,
+    featured: true,
+    isSample: true,
+    description: 'Discover the 600-year-old art of Jaipur Blue Pottery. Learn the unique quartz-based clay process and hand-painting techniques straight from a National Award-winning artisan.',
+    thumbnailGradient: 'linear-gradient(135deg, #1a6fa8 0%, #0d3d6b 60%, #071f3a 100%)',
+    curriculum: [
+      {
+        title: 'Getting Started',
+        lessons: [
+          {
+            id: 'sl-001-1',
+            title: 'History & Origins of Jaipur Blue Pottery',
+            duration: '18 min',
+            type: 'video',
+            // Public YouTube video about blue pottery
+            youtubeId: 'V3JZ3i3h8Fo',
+          },
+          {
+            id: 'sl-001-2',
+            title: 'Preparing Quartz-Based Clay',
+            duration: '24 min',
+            type: 'video',
+            youtubeId: 'mGDnOXCOK1E',
+          },
+          {
+            id: 'sl-001-3',
+            title: 'Painting Mughal Floral Motifs',
+            duration: '30 min',
+            type: 'video',
+            youtubeId: 'tJlNBdHyA10',
+          },
+        ],
+      },
+    ],
+    tags: ['pottery', 'blue pottery', 'jaipur', 'beginner'],
+  },
+  {
+    id: 'sample-002',
+    title: 'Madhubani Painting — Ancient Art for Modern Souls',
+    shortTitle: 'Madhubani Painting',
+    instructor: 'Meena Kumari',
+    instructorId: 'art-003',
+    category: 'painting',
+    difficulty: 'Beginner',
+    duration: '3 lessons',
+    totalHours: 1.2,
+    lessons: 3,
+    students: 2180,
+    rating: 4.8,
+    reviews: 519,
+    price: 0,
+    originalPrice: 0,
+    featured: true,
+    isSample: true,
+    description: 'Learn the timeless Madhubani painting tradition from Bihar. Using natural pigments and bamboo pens, create vibrant compositions that have been passed down for 2,500 years.',
+    thumbnailGradient: 'linear-gradient(135deg, #a8340a 0%, #6b1f06 60%, #380f02 100%)',
+    curriculum: [
+      {
+        title: 'Core Techniques',
+        lessons: [
+          {
+            id: 'sl-002-1',
+            title: 'Introduction to Madhubani Folk Art',
+            duration: '15 min',
+            type: 'video',
+            youtubeId: 'YlMcgIhBiZw',
+          },
+          {
+            id: 'sl-002-2',
+            title: 'Natural Pigments & Bamboo Pen',
+            duration: '20 min',
+            type: 'video',
+            youtubeId: 'k1oMzRr2Kd8',
+          },
+          {
+            id: 'sl-002-3',
+            title: 'Painting the Tree of Life Motif',
+            duration: '28 min',
+            type: 'video',
+            youtubeId: 'rGkFp9LQBCU',
+          },
+        ],
+      },
+    ],
+    tags: ['painting', 'madhubani', 'bihar', 'folk art', 'beginner'],
+  },
+  {
+    id: 'sample-003',
+    title: 'Dhokra Metal Craft — Lost-Wax Casting Secrets',
+    shortTitle: 'Dhokra Bronze Casting',
+    instructor: 'Savitri Bai',
+    instructorId: 'art-005',
+    category: 'metalwork',
+    difficulty: 'Intermediate',
+    duration: '3 lessons',
+    totalHours: 2,
+    lessons: 3,
+    students: 876,
+    rating: 4.7,
+    reviews: 201,
+    price: 0,
+    originalPrice: 0,
+    featured: false,
+    isSample: true,
+    description: 'Explore the 4,000-year-old Dhokra lost-wax casting method. From beeswax sculpting to bronze casting, create tribal figurines using techniques unchanged since the Indus Valley civilization.',
+    thumbnailGradient: 'linear-gradient(135deg, #7a5c2e 0%, #4a3518 60%, #281c09 100%)',
+    curriculum: [
+      {
+        title: 'The Lost-Wax Process',
+        lessons: [
+          {
+            id: 'sl-003-1',
+            title: 'History of Dhokra — 4000 Years of Casting',
+            duration: '22 min',
+            type: 'video',
+            youtubeId: 'aJmLkROkVCU',
+          },
+          {
+            id: 'sl-003-2',
+            title: 'Beeswax Sculpting & Clay Molds',
+            duration: '35 min',
+            type: 'video',
+            youtubeId: 'GqHdT2nQKfw',
+          },
+          {
+            id: 'sl-003-3',
+            title: 'Bronze Pouring & Breaking the Mold',
+            duration: '28 min',
+            type: 'video',
+            youtubeId: 'VStLrFwn_Y8',
+          },
+        ],
+      },
+    ],
+    tags: ['metalwork', 'dhokra', 'bronze', 'tribal', 'intermediate'],
+  },
+];

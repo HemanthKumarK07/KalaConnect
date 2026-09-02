@@ -16,14 +16,28 @@ const useAuthStore = create(
 
       login: async (email, password) => {
         try {
-          const res = await fetch(`${API_BASE}/auth/login`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ email, password })
-          });
-          const data = await res.json();
+          let res;
+          try {
+            res = await fetch(`${API_BASE}/auth/login`, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ email, password })
+            });
+          } catch (networkError) {
+            // fetch itself threw — server is unreachable
+            throw new Error('Cannot connect to server. Please make sure the backend is running on port 5000.');
+          }
+
+          let data;
+          try {
+            data = await res.json();
+          } catch (parseError) {
+            // Server returned non-JSON (e.g. HTML error page)
+            throw new Error(`Server error (${res.status}). Please try again later.`);
+          }
+
           if (!data.success) {
-            throw new Error(data.message);
+            throw new Error(data.message || 'Login failed');
           }
           
           localStorage.setItem('token', data.token);
@@ -42,14 +56,26 @@ const useAuthStore = create(
 
       signup: async (userData) => {
         try {
-          const res = await fetch(`${API_BASE}/auth/signup`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(userData)
-          });
-          const data = await res.json();
+          let res;
+          try {
+            res = await fetch(`${API_BASE}/auth/signup`, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(userData)
+            });
+          } catch (networkError) {
+            throw new Error('Cannot connect to server. Please make sure the backend is running on port 5000.');
+          }
+
+          let data;
+          try {
+            data = await res.json();
+          } catch (parseError) {
+            throw new Error(`Server error (${res.status}). Please try again later.`);
+          }
+
           if (!data.success) {
-            throw new Error(data.message);
+            throw new Error(data.message || 'Signup failed');
           }
           return data;
         } catch (error) {

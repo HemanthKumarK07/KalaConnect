@@ -4,54 +4,136 @@ import { motion } from 'framer-motion';
 import { Play, Pause, Maximize, CheckCircle, Circle, ArrowLeft, ChevronLeft, ChevronRight, FileText, HelpCircle, StickyNote, BookOpen, MessageSquare, Save, Settings } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import Button from '../components/Button';
-import { getCourseById } from '../data/courses';
-import useAcademyStore from '../store/useAcademyStore';
+import useAuthStore from '../store/useAuthStore';
+import SkeletonLoader from '../components/SkeletonLoader';
 import { useToast } from '../components/Toast';
 import './CoursePlayer.css';
+
+const API_BASE = 'http://localhost:5000/api';
 
 export default function CoursePlayer() {
   const { t } = useTranslation(['academy', 'common']);
   const { id } = useParams();
-  const course = getCourseById(id);
+  const { token, user } = useAuthStore();
   
-  const { progress, notes, markLessonComplete, saveNotes } = useAcademyStore();
+  const [course, setCourse] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [progress, setProgress] = useState({ completedLessons: [] });
+  const [activeLesson, setActiveLesson] = useState(null);
+  const [sidebarTab, setSidebarTab] = useState('lessons');
+  
+  const videoRef = useRef(null);
   const { showToast } = useToast();
 
-  const [activeLesson, setActiveLesson] = useState(course?.lessons[0]);
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [noteText, setNoteText] = useState(notes[id] || '');
-  const [sidebarTab, setSidebarTab] = useState('lessons');
-  const videoRef = useRef(null);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        setLoading(true);
+        // Fetch playlist details
+        const res = await fetch(`${API_BASE}/academy/playlists/${id}`);
+        const data = await res.json();
+        
+        if (data.success) {
+          setCourse(data.data);
+          if (data.data.lessons && data.data.lessons.length > 0) {
+            setActiveLesson(data.data.lessons[0]);
+          }
+        }
 
-  if (!course) {
-    return <div className="course-player-page" style={{ paddingTop: 'calc(var(--nav-height) + var(--space-20))', textAlign: 'center' }}><div className="container"><h2>{t('common:errors.notFound')}</h2></div></div>;
+        // Fetch progress if logged in
+        if (token) {
+          const progRes = await fetch(`${API_BASE}/academy/progress/${id}`, {
+            headers: { Authorization: `Bearer ${token}` }
+          });
+          const progData = await progRes.json();
+          if (progData.success) {
+            setProgress(progData.data);
+            if (progData.data.lastWatchedLessonId && data.data?.lessons) {
+              const lastLesson = data.data.lessons.find(l => l._id === progData.data.lastWatchedLessonId);
+              if (lastLesson) setActiveLesson(lastLesson);
+            }
+          }
+        }
+      } catch (err) {
+        console.error('Failed to load course details:', err);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchData();
+  }, [id, token]);
+
+  const handleVideoEnded = () => {
+    if (activeLesson) {
+      handleComplete(activeLesson._id);
+    }
+  };
+
+  const handleComplete = async (lessonId) => {
+    if (!token) {
+      showToast('Please log in to track your progress.', 'info');
+      return;
+    }
+
+    try {
+      const res = await fetch(`${API_BASE}/academy/progress/${lessonId}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+        body: JSON.stringify({ playlistId: id })
+      });
+      const data = await res.json();
+      
+      if (data.success) {
+        setProgress(data.data);
+        showToast('Progress saved');
+      }
+    } catch (err) {
+      console.error('Failed to save progress:', err);
+    }
+  };
+
+  if (loading) {
+    return <div className="course-player-page" style={{ paddingTop: '120px' }}>
+      <div className="container"><SkeletonLoader type="card" style={{ height: '600px' }} /></div>
+    </div>;
   }
 
-  const allLessons = course.curriculum.flatMap(s => s.lessons);
-  const currentLessonIdx = allLessons.findIndex(l => l.id === activeLesson?.id);
-  const progressPercent = (Object.keys(progress[id] || {}).length / allLessons.length) * 100;
+  if (!course) {
+    return <div className="course-player-page" style={{ paddingTop: '120px', textAlign: 'center' }}><h2>{t('common:errors.notFound')}</h2></div>;
+  }
 
-  const handleComplete = (lessonId) => {
-    markLessonComplete(id, lessonId);
-    showToast('Lesson progress updated');
-  };
-
-  const handleSaveNotes = () => {
-    saveNotes(id, noteText);
-    showToast('Notes saved successfully');
-  };
+  const allLessons = course.lessons || [];
+  const currentLessonIdx = allLessons.findIndex(l => l._id === activeLesson?._id);
+  const completedCount = progress.completedLessons?.length || 0;
+  const progressPercent = allLessons.length > 0 ? (completedCount / allLessons.length) * 100 : 0;
+  const isCurrentCompleted = activeLesson && progress.completedLessons?.includes(activeLesson._id);
 
   return (
     <div className="course-player-page">
       <div className="cp-layout">
         <div className="cp-main">
           <div className="cp-video">
-            <div className="cp-video__placeholder" style={{ background: 'linear-gradient(135deg, #2A1F17, #3F3126)' }}>
-              <div className="cp-video__play-btn"><Play size={40} /></div>
-              <p style={{ color: 'rgba(255,255,255,0.5)', fontSize: 'var(--text-sm)', marginTop: 'var(--space-3)' }}>
-                {activeLesson?.title}
-              </p>
-            </div>
+            {activeLesson?.video?.url ? (
+              <video 
+                ref={videoRef}
+                src={activeLesson.video.url}
+                className="cp-video__player"
+                controls
+                controlsList="nodownload"
+                onEnded={handleVideoEnded}
+                poster={activeLesson.thumbnail?.url}
+                style={{ width: '100%', maxHeight: '65vh', background: '#000' }}
+              />
+            ) : (
+              <div className="cp-video__placeholder" style={{ background: 'linear-gradient(135deg, #2A1F17, #3F3126)' }}>
+                <div className="cp-video__play-btn"><Play size={40} /></div>
+                <p style={{ color: 'rgba(255,255,255,0.5)', fontSize: 'var(--text-sm)', marginTop: 'var(--space-3)' }}>
+                  {activeLesson?.title || 'No lesson selected'}
+                </p>
+                {!activeLesson?.video?.url && <p style={{ color: 'var(--color-error)', fontSize: 'var(--text-xs)', marginTop: 'var(--space-1)' }}>Video processing or missing</p>}
+              </div>
+            )}
+            
             <div className="cp-progress">
               <div className="cp-progress__bar" style={{ width: `${progressPercent}%` }} />
             </div>
@@ -60,18 +142,21 @@ export default function CoursePlayer() {
           <div className="cp-lesson-info">
             <div className="cp-lesson-info__header">
               <div>
-                <span className="tag" style={{ marginBottom: 'var(--space-2)', display: 'inline-flex' }}>{activeLesson?.type}</span>
+                <span className="tag" style={{ marginBottom: 'var(--space-2)', display: 'inline-flex' }}>Lesson {currentLessonIdx + 1}</span>
                 <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: 'var(--text-xl)', fontWeight: 600 }}>{activeLesson?.title}</h2>
                 <p style={{ fontSize: 'var(--text-sm)', color: 'var(--color-text-secondary)', marginTop: 'var(--space-1)' }}>
-                  {course.shortTitle} • {activeLesson?.duration}
+                  {course.title} • {Math.round((activeLesson?.video?.duration || 0) / 60)} mins
                 </p>
               </div>
               <div className="cp-lesson-nav">
-                <button className="btn btn--ghost btn--sm" disabled={currentLessonIdx === 0} onClick={() => setActiveLesson(allLessons[currentLessonIdx - 1])}>
+                <button className="btn btn--ghost btn--sm" disabled={currentLessonIdx <= 0} onClick={() => setActiveLesson(allLessons[currentLessonIdx - 1])}>
                   <ChevronLeft size={16} /> {t('academy:player.previousLesson')}
                 </button>
-                <button className="btn btn--primary btn--sm" onClick={() => { handleComplete(activeLesson.id); if (currentLessonIdx < allLessons.length - 1) setActiveLesson(allLessons[currentLessonIdx + 1]); }}>
-                  {progress[id]?.[activeLesson.id] ? t('academy:player.completed') : t('academy:player.markComplete')}
+                <button className="btn btn--primary btn--sm" onClick={() => { 
+                  if (activeLesson) handleComplete(activeLesson._id); 
+                  if (currentLessonIdx < allLessons.length - 1) setActiveLesson(allLessons[currentLessonIdx + 1]); 
+                }}>
+                  {isCurrentCompleted ? 'Next Lesson' : t('academy:player.markComplete')} <ChevronRight size={16} />
                 </button>
               </div>
             </div>
@@ -91,9 +176,9 @@ export default function CoursePlayer() {
 
         <div className="cp-sidebar">
           <div className="cp-sidebar__header">
-            <h3 style={{ fontFamily: 'var(--font-heading)', fontWeight: 600 }}>{course.shortTitle}</h3>
+            <h3 style={{ fontFamily: 'var(--font-heading)', fontWeight: 600 }}>{course.title}</h3>
             <p style={{ fontSize: 'var(--text-xs)', color: 'var(--color-text-tertiary)' }}>
-              <span className="font-number">{Object.keys(progress[id] || {}).length}</span> / {allLessons.length} {t('academy:player.completed').toLowerCase()}
+              <span className="font-number">{completedCount}</span> / {allLessons.length} {t('academy:player.completed').toLowerCase()}
             </p>
             <div className="cp-sidebar__progress">
               <div className="cp-sidebar__progress-bar" style={{ width: `${progressPercent}%` }} />
@@ -101,7 +186,7 @@ export default function CoursePlayer() {
           </div>
 
           <div className="cp-sidebar__tabs">
-            {[{ id: 'lessons', icon: <BookOpen size={14} />, label: t('common:labels.lessons') }, { id: 'notes', icon: <StickyNote size={14} />, label: t('academy:player.notes') }].map(tab => (
+            {[{ id: 'lessons', icon: <BookOpen size={14} />, label: t('common:labels.lessons') }].map(tab => (
               <button key={tab.id} className={`cp-sidebar__tab ${sidebarTab === tab.id ? 'active' : ''}`} onClick={() => setSidebarTab(tab.id)}>
                 {tab.icon} {tab.label}
               </button>
@@ -111,39 +196,21 @@ export default function CoursePlayer() {
           <div className="cp-sidebar__content">
             {sidebarTab === 'lessons' && (
               <div className="cp-lessons-list">
-                {course.curriculum.map((section, si) => (
-                  <div key={si} className="cp-curriculum-section">
-                    <h4 className="cp-curriculum-section__title">{section.title}</h4>
-                    {section.lessons.map((lesson) => {
-                      const isCompleted = progress[id]?.[lesson.id] || false;
-                      return (
-                        <button key={lesson.id} className={`cp-lesson-item ${activeLesson.id === lesson.id ? 'active' : ''} ${isCompleted ? 'completed' : ''}`} onClick={() => setActiveLesson(lesson)}>
-                          <span className="cp-lesson-item__icon" onClick={(e) => { e.stopPropagation(); handleComplete(lesson.id); }}>
-                            {isCompleted ? <CheckCircle size={14} /> : <Circle size={14} />}
-                          </span>
-                          <span className="cp-lesson-item__title">{lesson.title}</span>
-                          <span className="cp-lesson-item__duration font-number">{lesson.duration}</span>
-                        </button>
-                      );
-                    })}
-                  </div>
-                ))}
-              </div>
-            )}
-
-            {sidebarTab === 'notes' && (
-              <div className="cp-notes">
-                <div className="cp-notes__header">
-                  <h3 style={{ fontFamily: 'var(--font-heading)' }}>{t('academy:player.notes')}</h3>
-                  <button className="btn-icon" onClick={handleSaveNotes}><Save size={18} /></button>
+                <div className="cp-curriculum-section">
+                  <h4 className="cp-curriculum-section__title">All Lessons</h4>
+                  {allLessons.map((lesson, idx) => {
+                    const isCompleted = progress.completedLessons?.includes(lesson._id);
+                    return (
+                      <button key={lesson._id} className={`cp-lesson-item ${activeLesson?._id === lesson._id ? 'active' : ''} ${isCompleted ? 'completed' : ''}`} onClick={() => setActiveLesson(lesson)}>
+                        <span className="cp-lesson-item__icon">
+                          {isCompleted ? <CheckCircle size={14} /> : <span className="font-number" style={{fontSize: '10px'}}>{idx + 1}</span>}
+                        </span>
+                        <span className="cp-lesson-item__title">{lesson.title}</span>
+                        <span className="cp-lesson-item__duration font-number">{Math.round((lesson.video?.duration || 0) / 60)}m</span>
+                      </button>
+                    );
+                  })}
                 </div>
-                <textarea 
-                  className="cp-notes__input"
-                  placeholder="Take notes while watching..."
-                  value={noteText}
-                  onChange={(e) => setNoteText(e.target.value)}
-                  onBlur={handleSaveNotes}
-                />
               </div>
             )}
           </div>

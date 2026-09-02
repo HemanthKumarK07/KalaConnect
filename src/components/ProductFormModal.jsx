@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
-import { Calculator, CircleHelp, IndianRupee, LoaderCircle, TriangleAlert } from 'lucide-react';
+import { Calculator, CircleHelp, IndianRupee, LoaderCircle, TriangleAlert, Sparkles } from 'lucide-react';
 import Modal from './Modal';
 import Button from './Button';
 import { useToast } from './Toast';
+import ImageUploader from './ImageUploader';
 import './ProductFormModal.css';
 
 const API_BASE = 'http://localhost:5000/api';
@@ -16,17 +17,34 @@ const money = (amount) => `₹${Number(amount || 0).toLocaleString('en-IN')}`;
 
 export default function ProductFormModal({ product, token, onClose, onSaved }) {
   const [form, setForm] = useState(DEFAULT_FORM);
+  const [images, setImages] = useState([]);
   const [recommendation, setRecommendation] = useState(null);
   const [loadingRecommendation, setLoadingRecommendation] = useState(false);
   const [saving, setSaving] = useState(false);
+  const [analyzingImage, setAnalyzingImage] = useState(false);
   const { showToast } = useToast();
   const isEditing = Boolean(product?._id);
 
   useEffect(() => {
     if (!product) {
       setForm(DEFAULT_FORM);
+      setImages([]);
       setRecommendation(null);
       return;
+    }
+    
+    if (product.images && Array.isArray(product.images)) {
+      setImages(product.images.map((img, idx) => ({
+        id: img.publicId || `existing-${idx}`,
+        url: img.url || (typeof img === 'string' ? img : ''),
+        publicId: img.publicId || null,
+        isPrimary: img.isPrimary || (idx === 0),
+        order: img.order !== undefined ? img.order : idx,
+        isUploaded: true,
+        isUploading: false
+      })));
+    } else {
+      setImages([]);
     }
     setForm({ ...DEFAULT_FORM, ...product, price: product.finalSellingPrice || product.price || '' });
     if (product.recommendedMinPrice > 0) {
@@ -60,7 +78,18 @@ export default function ProductFormModal({ product, token, onClose, onSaved }) {
     try {
       const response = await fetch(`${API_BASE}/products/fair-price`, {
         method: 'POST', headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
-        body: JSON.stringify({ productName: form.title, category: form.category, ...form, quantity: form.quantityProduced })
+        body: JSON.stringify({
+          productName: form.title,
+          category: form.category,
+          qualityLevel: form.qualityLevel,
+          materialCost: numericValue('materialCost'),
+          labourCost: numericValue('labourCost'),
+          packagingCost: numericValue('packagingCost'),
+          otherCost: numericValue('otherCost'),
+          craftingHours: numericValue('craftingHours'),
+          quantity: Number(form.quantityProduced),
+          askAiInsights: false,
+        })
       });
       const data = await response.json();
       if (!response.ok) throw new Error(data.message || 'Unable to calculate a recommendation.');
@@ -82,6 +111,23 @@ export default function ProductFormModal({ product, token, onClose, onSaved }) {
       showToast('Please enter a product name, category, and valid final selling price.', 'error');
       return;
     }
+
+    if (images.length === 0 || images.length > 5) {
+      showToast('Please upload between 1 and 5 product images.', 'error');
+      return;
+    }
+
+    if (images.some(img => img.isUploading)) {
+      showToast('Please wait for all images to finish uploading.', 'warning');
+      return;
+    }
+
+    const unfinishedImages = images.filter(img => !img.url || !img.publicId);
+    if (unfinishedImages.length > 0) {
+      showToast('Some images failed to upload. Please remove them or retry before saving.', 'error');
+      return;
+    }
+
     setSaving(true);
     const rec = recommendation?.recommendation;
     const payload = {
@@ -90,7 +136,13 @@ export default function ProductFormModal({ product, token, onClose, onSaved }) {
       otherCost: numericValue('otherCost'), craftingHours: numericValue('craftingHours'), quantityProduced: Number(form.quantityProduced),
       estimatedProductionCost: recommendation?.costBreakdown?.estimatedProductionCost ?? estimatedCost,
       recommendedMinPrice: rec?.recommendedMinPrice ?? 0, recommendedMaxPrice: rec?.recommendedMaxPrice ?? 0,
-      recommendedProfit: rec?.recommendedMaxProfit ?? 0
+      recommendedProfit: rec?.recommendedMaxProfit ?? 0,
+      images: images.map(img => ({
+        url: img.url,
+        publicId: img.publicId,
+        isPrimary: img.isPrimary,
+        order: img.order
+      }))
     };
     try {
       const response = await fetch(`${API_BASE}/products${isEditing ? `/${product._id}` : ''}`, {
@@ -113,6 +165,35 @@ export default function ProductFormModal({ product, token, onClose, onSaved }) {
     ['otherCost', 'Transport / other costs', 'Travel, production, tools, or other direct expenses.']
   ];
 
+  const analyzeImage = async () => {
+    const primaryImg = images.find(img => img.isPrimary) || images[0];
+    if (!primaryImg || (!primaryImg.url && !primaryImg.id)) {
+      showToast('Please upload an image first for AI to analyze.', 'warning');
+      return;
+    }
+    setAnalyzingImage(true);
+    try {
+      const response = await fetch(`${API_BASE}/ai/analyze-image`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+        body: JSON.stringify({ image: primaryImg.url })
+      });
+      const data = await response.json();
+      if (!response.ok) throw new Error(data.message || 'Failed to analyze image.');
+      
+      setForm(prev => ({
+        ...prev,
+        description: data.data.description,
+        price: data.data.estimatedPrice || prev.price
+      }));
+      showToast('AI filled description and price based on your image!', 'success');
+    } catch (error) {
+      showToast(error.message, 'error');
+    } finally {
+      setAnalyzingImage(false);
+    }
+  };
+
   return <Modal isOpen onClose={onClose} title={isEditing ? 'Edit Product & Price' : 'Add Product & Fair Price'} size="lg">
     <form className="product-form" onSubmit={saveProduct}>
       <div className="product-form__grid">
@@ -121,6 +202,12 @@ export default function ProductFormModal({ product, token, onClose, onSaved }) {
         <label>Craft (optional)<input name="craft" value={form.craft || ''} onChange={update} placeholder="e.g. Ikat weaving" /></label>
         <label>Village (optional)<input name="village" value={form.village || ''} onChange={update} placeholder="e.g. Pochampally" /></label>
       </div>
+      
+      <ImageUploader images={images} setImages={setImages} token={token} />
+      <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '-10px', marginBottom: '15px' }}>
+        <Button type="button" variant="outline" size="sm" icon={<Sparkles size={15} />} onClick={analyzeImage} loading={analyzingImage}>AI Auto-Fill Details</Button>
+      </div>
+      
       <label>Description (optional)<textarea name="description" value={form.description || ''} onChange={update} rows="2" placeholder="Tell customers about this handmade piece." /></label>
 
       <section className="price-recommendation">

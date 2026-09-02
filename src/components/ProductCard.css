@@ -52,14 +52,54 @@
   transition: transform var(--duration-slower) var(--ease-out-expo);
 }
 
+.product-card__image {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  transition: transform var(--duration-slower) var(--ease-out-expo);
+}
+
+/* Bottom gradient overlay so craft label stays readable over any photo */
+.product-card__image::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.55) 0%,
+    rgba(0, 0, 0, 0.1) 40%,
+    transparent 70%
+  );
+  pointer-events: none;
+}
+
+.product-card:hover .product-card__image,
 .product-card:hover .product-card__image-placeholder {
   transform: scale(1.06);
 }
 
-.product-card__craft-label {
+/* Craft label — bottom-left over real images */
+.product-card__image .product-card__craft-label {
+  position: absolute;
+  bottom: var(--space-3);
+  left: var(--space-3);
+  font-family: var(--font-display);
+  font-size: var(--text-sm);
+  color: rgba(255, 255, 255, 0.92);
+  font-style: italic;
+  z-index: 1;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.6);
+  padding: 0;
+}
+
+/* Craft label — centered over placeholder gradient */
+.product-card__image-placeholder .product-card__craft-label {
   font-family: var(--font-display);
   font-size: var(--text-lg);
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(255, 255, 255, 0.8);
   font-style: italic;
   text-align: center;
   padding: var(--space-4);

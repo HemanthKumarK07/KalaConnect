@@ -63,6 +63,12 @@ export default function AIAssistant() {
   }, []);
 
   // --- Voice / Microphone Handling (Web Speech API) ---
+  // Helper to remove <think> tags and their content from AI messages
+  const cleanMessage = (text) => {
+    if (typeof text !== 'string') return '';
+    return text.replace(/<think>[\s\S]*?<\/think>/gi, '').trim();
+  };
+
   const handleToggleListening = () => {
     const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 
@@ -244,7 +250,7 @@ export default function AIAssistant() {
       }));
 
       const response = await generateAIResponse(apiPayload, i18n.language);
-      setMessages(prev => [...prev, { role: 'assistant', content: response }]);
+      setMessages(prev => [...prev, { role: 'assistant', content: cleanMessage(response) }]);
     } catch (error) {
       console.error('AI Error:', error);
       showToast(error.message || 'Failed to communicate with AI', 'error');

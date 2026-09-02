@@ -2,15 +2,16 @@ import Product from '../models/Product.js';
 import { generateCompletion } from '../services/groq.js';
 
 // Category-based baseline fair profit margins (Min & Max %)
+// These are realistic margins for Indian rural handicraft markets
 const CATEGORY_MARGINS = {
-  textiles: { min: 0.25, max: 0.45, label: 'Handloom & Textiles' },
-  pottery: { min: 0.25, max: 0.40, label: 'Pottery & Ceramics' },
-  jewelry: { min: 0.30, max: 0.50, label: 'Traditional Jewelry' },
-  paintings: { min: 0.35, max: 0.60, label: 'Folk Art & Paintings' },
-  woodwork: { min: 0.25, max: 0.45, label: 'Woodwork & Toys' },
-  brass_metal: { min: 0.30, max: 0.50, label: 'Metalcraft & Dhokra' },
-  leather: { min: 0.25, max: 0.40, label: 'Leather Craft' },
-  default: { min: 0.25, max: 0.40, label: 'Handicrafts' }
+  textiles: { min: 0.15, max: 0.30, label: 'Handloom & Textiles' },
+  pottery: { min: 0.12, max: 0.25, label: 'Pottery & Ceramics' },
+  jewelry: { min: 0.20, max: 0.35, label: 'Traditional Jewelry' },
+  paintings: { min: 0.20, max: 0.40, label: 'Folk Art & Paintings' },
+  woodwork: { min: 0.15, max: 0.30, label: 'Woodwork & Toys' },
+  brass_metal: { min: 0.18, max: 0.32, label: 'Metalcraft & Dhokra' },
+  leather: { min: 0.15, max: 0.28, label: 'Leather Craft' },
+  default: { min: 0.12, max: 0.25, label: 'Handicrafts' }
 };
 
 // Quality level margin multipliers
@@ -92,8 +93,9 @@ export const calculateFairPrice = async (req, res, next) => {
     const maxMarginRate = catConfig.max * qualityMultiplier;
 
     // 4. Calculate recommended profit & price ranges
-    const recommendedMinProfit = Math.max(50, Math.round(estimatedProductionCost * minMarginRate));
-    const recommendedMaxProfit = Math.max(100, Math.round(estimatedProductionCost * maxMarginRate));
+    // Profit is purely proportional — no artificial minimum floors
+    const recommendedMinProfit = Math.round(estimatedProductionCost * minMarginRate);
+    const recommendedMaxProfit = Math.round(estimatedProductionCost * maxMarginRate);
 
     const recommendedMinPrice = estimatedProductionCost + recommendedMinProfit;
     const recommendedMaxPrice = estimatedProductionCost + recommendedMaxProfit;
@@ -229,6 +231,21 @@ export const createProduct = async (req, res, next) => {
       });
     }
 
+    if (!Array.isArray(images) || images.length === 0 || images.length > 5) {
+      return res.status(400).json({
+        success: false,
+        message: 'A product must have between 1 and 5 images.'
+      });
+    }
+
+    // Ensure exactly one primary image
+    const primaryCount = images.filter(img => img.isPrimary).length;
+    if (primaryCount !== 1) {
+      images.forEach((img, idx) => {
+        img.isPrimary = (idx === 0);
+      });
+    }
+
     if (!COST_FIELDS.every((field) => isValidNonNegativeNumber(req.body[field] ?? 0))
       || !Number.isFinite(Number(quantityProduced)) || Number(quantityProduced) < 1) {
       return res.status(400).json({ success: false, message: 'Pricing costs must be valid non-negative numbers and quantity must be at least 1.' });
@@ -252,7 +269,14 @@ export const createProduct = async (req, res, next) => {
       category: category.toLowerCase(),
       craft: craft || req.user.craft || 'Traditional Craft',
       village: village || req.user.district || req.user.state || 'India',
-      images: Array.isArray(images) && images.length > 0 ? images : ['https://images.unsplash.com/photo-1606744837616-56c9a5c6a6eb?auto=format&fit=crop&w=600&q=80'],
+      images: Array.isArray(images) && images.length > 0 
+        ? images.map((img, i) => ({
+            url: img.url,
+            publicId: img.publicId,
+            isPrimary: img.isPrimary || false,
+            order: img.order !== undefined ? img.order : i
+          }))
+        : [],
       description: description || '',
       materials: Array.isArray(materials) ? materials : [],
       story: story || '',
@@ -385,6 +409,30 @@ export const updateProduct = async (req, res, next) => {
       
       const prodCost = Number(updateData.estimatedProductionCost || product.estimatedProductionCost || 0);
       updateData.isFairlyPriced = price >= prodCost;
+    }
+
+    if (updateData.images !== undefined) {
+      if (!Array.isArray(updateData.images) || updateData.images.length === 0 || updateData.images.length > 5) {
+        return res.status(400).json({
+          success: false,
+          message: 'A product must have between 1 and 5 images.'
+        });
+      }
+      
+      // Ensure exactly one primary image
+      const primaryCount = updateData.images.filter(img => img.isPrimary).length;
+      if (primaryCount !== 1) {
+        updateData.images.forEach((img, idx) => {
+          img.isPrimary = (idx === 0);
+        });
+      }
+
+      updateData.images = updateData.images.map((img, i) => ({
+        url: img.url,
+        publicId: img.publicId,
+        isPrimary: img.isPrimary || false,
+        order: img.order !== undefined ? img.order : i
+      }));
     }
 
     product = await Product.findByIdAndUpdate(req.params.id, updateData, {

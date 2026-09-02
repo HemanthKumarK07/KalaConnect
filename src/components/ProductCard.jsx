@@ -39,6 +39,15 @@ export default function ProductCard({ product, index = 0 }) {
     'linear-gradient(135deg, #A8BCC4 0%, #5C6B7A 50%, #3F4A5C 100%)',
   ];
 
+  const getPrimaryImageUrl = (product) => {
+    if (!product.images || !Array.isArray(product.images) || product.images.length === 0) return null;
+    if (typeof product.images[0] === 'string') return product.images[0]; // legacy format support
+    const primary = product.images.find(img => img.isPrimary) || product.images[0];
+    return primary.url;
+  };
+
+  const primaryImage = getPrimaryImageUrl(product);
+
   return (
     <motion.div
       className="product-card card"
@@ -47,14 +56,23 @@ export default function ProductCard({ product, index = 0 }) {
       viewport={{ once: true, amount: 0.1 }}
       transition={{ duration: 0.5, delay: index * 0.08, ease: [0.16, 1, 0.3, 1] }}
     >
-      <Link to={`/marketplace/${product.id}`} className="product-card__link">
+      <Link to={`/marketplace/${product.id || product._id}`} className="product-card__link">
         <div className="product-card__image-wrap" data-cursor="view">
-          <div
-            className="product-card__image-placeholder"
-            style={{ background: colors[index % colors.length] }}
-          >
-            <span className="product-card__craft-label">{product.craft}</span>
-          </div>
+          {primaryImage ? (
+            <div
+              className="product-card__image"
+              style={{ backgroundImage: `url("${primaryImage}")` }}
+            >
+              <span className="product-card__craft-label">{product.craft}</span>
+            </div>
+          ) : (
+            <div
+              className="product-card__image-placeholder"
+              style={{ background: colors[index % colors.length] }}
+            >
+              <span className="product-card__craft-label">{product.craft}</span>
+            </div>
+          )}
 
           {isAIVerified && (
             <div className="ai-verified-badge">

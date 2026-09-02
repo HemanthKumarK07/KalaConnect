@@ -18,9 +18,22 @@ if (dns.setDefaultResultOrder) {
 const connectDB = async () => {
   console.log("DB URI loaded:", process.env.MONGODB_URI ? "Yes (Atlas)" : "No (Undefined/Fallback)");
 
-  return mongoose.connect(process.env.MONGODB_URI)
+  const options = {
+    // Force IPv4 — fixes Windows DNS resolution failures with Atlas hostnames
+    family: 4,
+    // Give more time for initial server selection on slow networks
+    serverSelectionTimeoutMS: 15000,
+    // Keep connections alive to prevent pool re-resolution issues
+    heartbeatFrequencyMS: 20000,
+  };
+
+  return mongoose.connect(process.env.MONGODB_URI, options)
     .then(() => console.log("✅ MongoDB Connected"))
-    .catch(err => console.error("❌ MongoDB Connection Error:", err));
+    .catch(err => {
+      console.error("❌ MongoDB Connection Error:", err.message);
+      // Exit so nodemon can restart and retry
+      process.exit(1);
+    });
 };
 
 export default connectDB;

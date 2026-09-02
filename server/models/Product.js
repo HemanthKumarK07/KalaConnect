@@ -16,7 +16,12 @@ const productSchema = new mongoose.Schema(
     sold: { type: Number, default: 0 },
     inStock: { type: Boolean, default: true },
     featured: { type: Boolean, default: false },
-    images: [{ type: String }],
+    images: [{
+      url: { type: String, required: true },
+      publicId: { type: String, required: true },
+      isPrimary: { type: Boolean, default: false },
+      order: { type: Number, default: 0 }
+    }],
     description: { type: String },
     materials: [{ type: String }],
     story: { type: String },

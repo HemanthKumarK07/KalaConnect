@@ -7,6 +7,11 @@ import rateLimit from 'express-rate-limit';
 import mongoSanitize from 'express-mongo-sanitize';
 import connectDB from './config/db.js';
 import { notFound, errorHandler } from './middleware/error.js';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 import authRoutes from './routes/auth.js';
 import userRoutes from './routes/user.js';
@@ -14,6 +19,8 @@ import dashboardRoutes from './routes/dashboard.js';
 import communityRoutes from './routes/community.js';
 import aiRoutes from './routes/ai.js';
 import productRoutes from './routes/products.js';
+import uploadRoutes from './routes/upload.js';
+import academyRoutes from './routes/academy.js';
 
 import { runSeed } from './seeder.js';
 
@@ -76,6 +83,9 @@ app.get('/', (req, res) => {
   res.send('KalaConnect API is running...');
 });
 
+// Serve sample product photos statically
+app.use('/kala-photos', express.static(path.join(__dirname, '../kala photos')));
+
 // Define Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);
@@ -83,6 +93,8 @@ app.use('/api/dashboard', dashboardRoutes);
 app.use('/api/community', communityRoutes);
 app.use('/api/ai', aiRoutes);
 app.use('/api/products', productRoutes);
+app.use('/api/upload', uploadRoutes);
+app.use('/api/academy', academyRoutes);
 
 // Error Handling Middleware
 app.use(notFound);

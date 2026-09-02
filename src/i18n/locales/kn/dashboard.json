@@ -1,7 +1,7 @@
 {
   "title": "ಡ್ಯಾಶ್‌ಬೋರ್ಡ್",
   "welcome": { "artisan": "ನಿಮ್ಮ ಕರಕುಶಲ, ಉತ್ಪನ್ನಗಳು ಮತ್ತು ಆದೇಶಗಳನ್ನು ಒಂದೇ ಸ್ಥಳದಲ್ಲಿ ನಿರ್ವಹಿಸಿ.", "customer": "ಅಧಿಕೃತ ಕರಕುಶಲ ವಸ್ತುಗಳನ್ನು ಅನ್ವೇಷಿಸಿ ಮತ್ತು ನಿಮ್ಮ ಆದೇಶಗಳನ್ನು ನಿರ್ವಹಿಸಿ." },
-  "sidebar": { "overview": "ಅವಲೋಕನ", "products": "ಉತ್ಪನ್ನಗಳು", "orders": "ಆದೇಶಗಳು", "analytics": "ಅನಾಲಿಟಿಕ್ಸ್", "students": "ವಿದ್ಯಾರ್ಥಿಗಳು", "reviews": "ವಿಮರ್ಶೆಗಳು", "notifications": "ಅಧಿಸೂಚನೆಗಳು", "settings": "ಸೆಟ್ಟಿಂಗ್‌ಗಳು", "myOrders": "ನನ್ನ ಆದೇಶಗಳು", "wishlist": "ವಿಶ್‌ಲಿಸ್ಟ್", "myCourses": "ನನ್ನ ಕೋರ್ಸ್‌ಗಳು", "certificates": "ಪ್ರಮಾಣಪತ್ರಗಳು" },
+  "sidebar": { "overview": "ಅವಲೋಕನ", "products": "ಉತ್ಪನ್ನಗಳು", "orders": "ಆದೇಶಗಳು", "analytics": "ಅನಾಲಿಟಿಕ್ಸ್", "academy": "ಅಕಾಡೆಮಿ", "students": "ವಿದ್ಯಾರ್ಥಿಗಳು", "reviews": "ವಿಮರ್ಶೆಗಳು", "notifications": "ಅಧಿಸೂಚನೆಗಳು", "settings": "ಸೆಟ್ಟಿಂಗ್‌ಗಳು", "myOrders": "ನನ್ನ ಆದೇಶಗಳು", "wishlist": "ವಿಶ್‌ಲಿಸ್ಟ್", "myCourses": "ನನ್ನ ಕೋರ್ಸ್‌ಗಳು", "certificates": "ಪ್ರಮಾಣಪತ್ರಗಳು" },
   "recentOrders": { "title": "ಇತ್ತೀಚಿನ ಆದೇಶಗಳು", "noOrders": "ಇತ್ತೀಚಿನ ಆದೇಶಗಳಿಲ್ಲ.", "viewAll": "ಎಲ್ಲವನ್ನೂ ವೀಕ್ಷಿಸಿ" },
   "overview": "ಅವಲೋಕನ",
   "tabs": {

@@ -1,7 +1,7 @@
 {
   "title": "డాష్‌బోర్డ్",
   "welcome": { "artisan": "మీ చేతిపని, ఉత్పత్తులు మరియు ఆర్డర్‌లను ఒకే చోట నిర్వహించండి.", "customer": "ప్రామాణిక చేతిపనులను కనుగొని మీ ఆర్డర్‌లను నిర్వహించండి." },
-  "sidebar": { "overview": "అవలోకనం", "products": "ఉత్పత్తులు", "orders": "ఆర్డర్లు", "analytics": "విశ్లేషణలు", "students": "విద్యార్థులు", "reviews": "సమీక్షలు", "notifications": "నోటిఫికేషన్లు", "settings": "సెట్టింగ్‌లు", "myOrders": "నా ఆర్డర్లు", "wishlist": "విష్‌లిస్ట్", "myCourses": "నా కోర్సులు", "certificates": "సర్టిఫికెట్లు" },
+  "sidebar": { "overview": "అవలోకనం", "products": "ఉత్పత్తులు", "orders": "ఆర్డర్లు", "analytics": "విశ్లేషణలు", "academy": "అకాడమీ", "students": "విద్యార్థులు", "reviews": "సమీక్షలు", "notifications": "నోటిఫికేషన్లు", "settings": "సెట్టింగ్‌లు", "myOrders": "నా ఆర్డర్లు", "wishlist": "విష్‌లిస్ట్", "myCourses": "నా కోర్సులు", "certificates": "సర్టిఫికెట్లు" },
   "recentOrders": { "title": "ఇటీవలి ఆర్డర్లు", "noOrders": "ఇటీవలి ఆర్డర్లు లేవు.", "viewAll": "అన్నీ చూడండి" },
   "overview": "అవలోకనం",
   "tabs": {

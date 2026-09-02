@@ -18,6 +18,7 @@ export default function ProductDetail() {
   const { id } = useParams();
   const product = getProductById(id);
   const [selectedTab, setSelectedTab] = useState('story');
+  const [selectedImage, setSelectedImage] = useState(null);
   
   const { addItem } = useCartStore();
   const { wishlist, toggleWishlist } = useAppStore();
@@ -58,27 +59,79 @@ export default function ProductDetail() {
         <div className="pd-layout">
           {/* Gallery */}
           <SectionReveal animation="fade-right" className="pd-gallery">
-            <div className="pd-gallery__main" style={{ background: colors[0] }}>
-              <span className="font-hero" style={{ color: 'rgba(255,255,255,0.7)', fontSize: 'var(--text-2xl)', fontStyle: 'italic', textAlign: 'center' }}>
-                {product.craft}
-              </span>
-              {isAIVerified && (
-                <div className="ai-verified-badge">
-                  <ShieldCheck size={14} />
-                  <span>100% Handcrafted</span>
+            {product.images && product.images.length > 0 ? (
+              <>
+                <div 
+                  className="pd-gallery__main" 
+                  style={{ 
+                    backgroundImage: `url("${product.images.find(img => img.url === selectedImage)?.url || product.images.find(img => img.isPrimary)?.url || (typeof product.images[0] === 'string' ? product.images[0] : product.images[0]?.url)}")`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                    backgroundColor: 'var(--color-surface-hover)'
+                  }}
+                >
+                  {isAIVerified && (
+                    <div className="ai-verified-badge">
+                      <ShieldCheck size={14} />
+                      <span>100% Handcrafted</span>
+                    </div>
+                  )}
+                  {product.handmadeBadge && (
+                    <div className="pd-gallery__badge">
+                      <Shield size={14} /> AI {t('labels.verified')} {t('labels.handmade')}
+                    </div>
+                  )}
                 </div>
-              )}
-              {product.handmadeBadge && (
-                <div className="pd-gallery__badge">
-                  <Shield size={14} /> AI {t('labels.verified')} {t('labels.handmade')}
+                
+                {product.images.length > 1 && (
+                  <div className="pd-gallery__thumbs">
+                    {product.images.map((img, i) => {
+                      const imgUrl = typeof img === 'string' ? img : img.url;
+                      const isActive = selectedImage ? selectedImage === imgUrl : (img.isPrimary || i === 0);
+                      return (
+                        <div 
+                          key={i} 
+                          className="pd-gallery__thumb" 
+                          style={{ 
+                            backgroundImage: `url("${imgUrl}")`,
+                            backgroundSize: 'cover',
+                            backgroundPosition: 'center',
+                            opacity: isActive ? 1 : 0.6,
+                            border: isActive ? '2px solid var(--color-accent)' : '2px solid transparent',
+                            cursor: 'pointer'
+                          }} 
+                          onClick={() => setSelectedImage(imgUrl)}
+                        />
+                      );
+                    })}
+                  </div>
+                )}
+              </>
+            ) : (
+              <>
+                <div className="pd-gallery__main" style={{ background: colors[0] }}>
+                  <span className="font-hero" style={{ color: 'rgba(255,255,255,0.7)', fontSize: 'var(--text-2xl)', fontStyle: 'italic', textAlign: 'center' }}>
+                    {product.craft}
+                  </span>
+                  {isAIVerified && (
+                    <div className="ai-verified-badge">
+                      <ShieldCheck size={14} />
+                      <span>100% Handcrafted</span>
+                    </div>
+                  )}
+                  {product.handmadeBadge && (
+                    <div className="pd-gallery__badge">
+                      <Shield size={14} /> AI {t('labels.verified')} {t('labels.handmade')}
+                    </div>
+                  )}
                 </div>
-              )}
-            </div>
-            <div className="pd-gallery__thumbs">
-              {[0, 1, 2, 3].map(i => (
-                <div key={i} className="pd-gallery__thumb" style={{ background: colors[i % 2], opacity: i === 0 ? 1 : 0.6 }} />
-              ))}
-            </div>
+                <div className="pd-gallery__thumbs">
+                  {[0, 1, 2, 3].map(i => (
+                    <div key={i} className="pd-gallery__thumb" style={{ background: colors[i % 2], opacity: i === 0 ? 1 : 0.6 }} />
+                  ))}
+                </div>
+              </>
+            )}
           </SectionReveal>
 
           {/* Info */}
